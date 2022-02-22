@@ -1,3 +1,6 @@
 cmake-build-debug
 fdf_anton/libft
 .idea
+*.o
+test_maps
+fdf_anton/fdf
