@@ -21,6 +21,8 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
+# define BUFFER_SIZE	50
+
 typedef struct s_params_struct
 {
 	size_t	position;
@@ -28,45 +30,59 @@ typedef struct s_params_struct
 	char	buf[BUFFER_SIZE];
 }	t_params;
 
-typedef struct s_params_window
+typedef struct s_ambient
+{
+	float	ratio;
+	int		RGB[3]; /* maybe convert to single int color immediately during parsing ? */
+}	t_ambient;
+
+typedef struct s_camera
+{
+	float	coord[3];
+	float	orient[3];
+}	t_camera;
+
+typedef struct s_light
+{
+	float	coord[3];
+	float	orient[3];
+	int		RGB[3]; /* same as ambient */
+}	t_light;
+
+typedef struct s_sphere
+{
+	float	coord[3];
+	float	diameter;
+	int		RGB[3]; /* same as ambient */
+}	t_sphere;
+
+typedef struct s_plane
+{
+	float	coord[3];
+	float	orient[3];
+	int		RGB[3]; /* same as ambient */
+}	t_plane;
+
+typedef struct s_cylinder
+{
+	float	coord[3];
+	float	orient[3];
+	float	diameter;
+	float	height;
+	int		RGB[3]; /* same as ambient */
+}	t_cylinder;
+
+typedef struct s_data
 {
 	void	*img;
 	void	*mlx;
 	void	*mlx_win;
-	int		win_width;
-	int		win_height;
-	int		angle_v;
-	int		angle_h;
-	double	pi;
-	int		width;
-	int		depth;
-	int		**heights;
-	char	***char_colors;
-	int		*x_m;
-	int		*y_m;
-	int		**x;
-	int		**y;
-	int		**colors;
-	double	scale_factor;
-	int		offset_x;
-	int		offset_y;
-}	t_window;
-
-int		get_next_line(int fd, char **line);
-void	read_file(int fd, t_window *win);
-void	scale_data(t_window *win);
-int		hex_to_int(char *hex_num);
-int		ft_round(double exact_num);
-int		**allocate_image(int h, int w);
-int		ft_distance(int x1, double x2, int y1, double y2);
-void	data_to_img(t_window *win);
-void	map_data(t_window *win);
-int		ft_interpolate(int p1, int p2, int k, int n);
-int		key_hook(int keycode, t_window *win);
-void	free_end(t_window *win);
-int		arr_len(char **arr);
-void	emergency_exit(t_window *win, int j, char **arr);
-void	data_to_img_rev(t_window *win);
-void	instructions(t_window *win);
+	t_ambient	ambient;
+	t_camera	camera;
+	t_light		*lights;
+	t_sphere	*spheres;
+	t_plane		*planes;
+	t_cylinder	*cylinders;
+}	t_data;
 
 #endif

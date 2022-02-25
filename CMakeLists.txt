@@ -8,6 +8,7 @@ set(LIBFT_FILES
 
 set(SOURCE_FILES
         main.c
+        tracer.c
         )
 
 add_executable(miniRT ${SOURCE_FILES} ${LIBFT_FILES})
