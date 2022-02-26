@@ -6,18 +6,25 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 20:15:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/26 02:22:59 by mwen             ###   ########.fr       */
+/*   Updated: 2022/02/26 15:23:03 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-unsigned long	ft_itohexa(int *rgb)
+int	ft_itohexa(int *rgb, unsigned long *color)
 {
-	return (((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + (rgb[2] & 0xff));
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+		if (rgb[i] > 255 || rgb[i] < 0)
+			return (1);
+	*color = ((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + (rgb[2] & 0xff);
+	return (0);
 }
 
-int	ft_atof(char *line, float *f, int if_free)
+int	stof(char *line, float *f, int if_free)
 {
 	int		i;
 	int		fact;
@@ -58,7 +65,7 @@ int	parse_farray(char *line, float *array, int orientation)
 	free(line);
 	while (split[++i])
 	{
-		if (i < 3 && !ft_atof(split[i], &array[i], 0))
+		if (i < 3 && !stof(split[i], &array[i], 0))
 			if (orientation && (array[i] > 1.0 || array[i] < -1.0))
 				invalid = 1;
 		free(split[i]);
@@ -72,7 +79,7 @@ int	parse_farray(char *line, float *array, int orientation)
 	return (0);
 }
 
-int	parse_color(char *line, int *rgb, unsigned long color)
+int	parse_color(char *line, int *rgb, unsigned long *color)
 {
 	int		i;
 	char	**split;
@@ -94,13 +101,12 @@ int	parse_color(char *line, int *rgb, unsigned long color)
 		free(split[i]);
 	}
 	free(split);
-	if (i != 3)
-		return (terminate(NULL, "Error\nInvalid RGB value", 0));
-	color = ft_itohexa(rgb);
+	if (ft_itohexa(rgb, color) || i != 3)
+		return (terminate(NULL, "Error\nRGB has 3 values in range 0-255", 0));
 	return (0);
 }
 
-char	*parse_information(char *line, int *i)
+char	*parse_info(char *line, int *i)
 {
 	int		len;
 	int		j;

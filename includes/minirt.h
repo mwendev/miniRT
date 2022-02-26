@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/02/26 01:10:24 by mwen             ###   ########.fr       */
+/*   Updated: 2022/02/26 16:10:49 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_params_struct
 typedef struct s_ambient
 {
 	float			ratio;
-	int				RGB[3];
+	int				rgb[3];
 	unsigned long	color;
 }	t_ambient;
 
@@ -45,39 +45,51 @@ typedef struct s_camera
 
 typedef struct s_light
 {
-	float	coord[3];
-	float	orient[3];
-	int		RGB[3]; /* same as ambient */
+	float			coord[3];
+	float			ratio;
+	int				rgb[3];
+	unsigned long	color;
+	struct s_light	*next;
+	struct s_light	*prev;
 }	t_light;
 
 typedef struct s_sphere
 {
-	float	coord[3];
-	float	diameter;
-	int		RGB[3]; /* same as ambient */
+	float			coord[3];
+	float			diameter;
+	int				rgb[3];
+	unsigned long	color;
+	struct s_sphere	*next;
+	struct s_sphere	*prev;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	float	coord[3];
-	float	orient[3];
-	int		RGB[3]; /* same as ambient */
+	float			coord[3];
+	float			orient[3];
+	int				rgb[3];
+	unsigned long	color;
+	struct s_plane	*next;
+	struct s_plane	*prev;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	float	coord[3];
-	float	orient[3];
-	float	diameter;
-	float	height;
-	int		RGB[3]; /* same as ambient */
+	float				coord[3];
+	float				orient[3];
+	float				diameter;
+	float				height;
+	int					rgb[3];
+	unsigned long		color;
+	struct s_cylinder	*next;
+	struct s_cylinder	*prev;
 }	t_cylinder;
 
 typedef struct s_data
 {
-	void	*img;
-	void	*mlx;
-	void	*mlx_win;
+	void		*img;
+	void		*mlx;
+	void		*mlx_win;
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		*lights;
@@ -88,9 +100,13 @@ typedef struct s_data
 
 int		parse(char	*file, t_data *data);
 int		terminate(t_data *data, char *msg, int if_exit);
-int		ft_atof(char *line, float *f, int if_free);
-char	*parse_information(char *line, int *i);
-int		parse_color(char *line, int *rgb, unsigned long color);
-int		parse_farray(char *line, float *array, int orientation);
+int		stof(char *str, float *f, int if_free);
+char	*parse_info(char *str, int *i);
+int		parse_color(char *str, int *rgb, unsigned long *color);
+int		parse_farray(char *str, float *array, int orientation);
+int		parse_light(char *str, t_data *data, int type, t_light *new);
+int		parse_sp(char *str, t_data *data, int type, t_sphere *new);
+int		parse_pl(char *str, t_data *data, int type, t_plane *new);
+int		parse_cy(char *str, t_data *data, int type, t_cylinder *new);
 
 #endif
