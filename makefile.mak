@@ -6,7 +6,7 @@
 #    By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 10:00:09 by mwen              #+#    #+#              #
-#    Updated: 2022/02/26 14:37:26 by mwen             ###   ########.fr        #
+#    Updated: 2022/02/26 23:21:43 by mwen             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	miniRT
 
 DIR_SRCS	=	srcs/
 SRC			=	main.c get_next_line.c get_next_line_utils.c parse.c terminate.c\
-				parse_utils.c parse_shapes.c
+				parse_utils.c parse_shapes.c listen.c
 SRCS		=	$(addprefix $(DIR_SRCS), $(SRC))
 
 CFLAG		=	-Wall -Wextra -Werror
