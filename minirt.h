@@ -74,15 +74,21 @@ typedef struct s_cylinder
 
 typedef struct s_data
 {
-	void	*img;
-	void	*mlx;
-	void	*mlx_win;
+	void		*img;
+	void		*mlx;
+	void		*mlx_win;
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		*lights;
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_cylinder	*cylinders;
+	float		scr_dist;
+	int			scr_res_w;
+	int			scr_res_h;
+	int			scr_w;
+	int			scr_h;
+	float		fov;
 }	t_data;
 
 #endif
