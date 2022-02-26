@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/02/26 16:10:49 by mwen             ###   ########.fr       */
+/*   Updated: 2022/02/26 16:19:22 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_camera
 	float	coord[3];
 	float	orient[3];
 	int		fov;
+	int		rotation;
 }	t_camera;
 
 typedef struct s_light
@@ -68,6 +69,7 @@ typedef struct s_plane
 	float			coord[3];
 	float			orient[3];
 	int				rgb[3];
+	int				rotation[3];
 	unsigned long	color;
 	struct s_plane	*next;
 	struct s_plane	*prev;
@@ -80,6 +82,7 @@ typedef struct s_cylinder
 	float				diameter;
 	float				height;
 	int					rgb[3];
+	int					rotation[3];
 	unsigned long		color;
 	struct s_cylinder	*next;
 	struct s_cylinder	*prev;
@@ -96,6 +99,12 @@ typedef struct s_data
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_cylinder	*cylinders;
+	float		scr_dist;
+	int			scr_res_w;
+	int			scr_res_h;
+	int			scr_w;
+	int			scr_h;
+	float		fov;
 }	t_data;
 
 int		parse(char	*file, t_data *data);
