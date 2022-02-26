@@ -6,7 +6,7 @@
 #    By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 10:00:09 by mwen              #+#    #+#              #
-#    Updated: 2022/02/25 22:53:22 by mwen             ###   ########.fr        #
+#    Updated: 2022/02/26 02:39:58 by mwen             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,14 @@ clean:
 			rm -rf objects
 			/bin/rm -f *.o
 			/bin/rm -rf ./objects/*.o
+			make clean -sC $(LIBFT_DIR)
+			make clean -sC $(MINILIBX_DIR)
 			printf '\033[31m[ ✔ ] %s\n\033[0m' "Cleaned miniRT"
 
 fclean: clean
 			/bin/rm -f $(NAME)
+			make fclean -sC $(LIBFT_DIR)
+			make clean -sC $(MINILIBX_DIR)
 			printf '\033[31m[ ✔ ] %s\n\033[0m' "Fcleaned miniRT"
 
 re: fclean all

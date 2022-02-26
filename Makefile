@@ -1,8 +1,11 @@
 mak:
 	make -f makefile.mak
 
-mak re:
+re:
 	make re -f makefile.mak
+
+fclean:
+	make fclean -f makefile.mak
 
 nix:
 	make -f makefile.nix
