@@ -41,6 +41,7 @@ typedef struct s_camera
 	float	coord[3];
 	float	orient[3];
 	int		fov;
+	int		rotation;
 }	t_camera;
 
 typedef struct s_light
@@ -62,6 +63,7 @@ typedef struct s_plane
 	float	coord[3];
 	float	orient[3];
 	int		RGB[3]; /* same as ambient */
+	int		rotation[3];
 }	t_plane;
 
 typedef struct s_cylinder
@@ -71,19 +73,26 @@ typedef struct s_cylinder
 	float	diameter;
 	float	height;
 	int		RGB[3]; /* same as ambient */
+	int		rotation[3]
 }	t_cylinder;
 
 typedef struct s_data
 {
-	void	*img;
-	void	*mlx;
-	void	*mlx_win;
+	void		*img;
+	void		*mlx;
+	void		*mlx_win;
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		*lights;
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_cylinder	*cylinders;
+	float		scr_dist;
+	int			scr_res_w;
+	int			scr_res_h;
+	int			scr_w;
+	int			scr_h;
+	float		fov;
 }	t_data;
 
 int		parse(char	*file, t_data *data);
