@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aserdyuk <aserdyuk@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:49:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/02/21 19:49:50 by aserdyuk         ###   ########.fr       */
+/*   Updated: 2022/02/25 20:35:51 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../includes/minirt.h"
 
-int main()
+int main(int argc, char **argv)
 {
-	printf("Hello, World!\n");
-	return 0;
+	t_data	data;
+
+	if (argc != 2)
+		terminate(NULL, "Invalid input", 1);
+	//initialize ACL
+	parse(argv[1], &data);
 }
