@@ -65,6 +65,7 @@
 
 # include <math.h>
 # include "../minilibx_opengl/mlx.h"
+//# include <mlx.h>
 # include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
