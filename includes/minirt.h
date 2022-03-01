@@ -64,8 +64,8 @@
 # define LX_MOUSE_SCROLL_DOWN	233
 
 # include <math.h>
-# include "../minilibx_opengl/mlx.h"
-//# include <mlx.h>
+//# include "../minilibx_opengl/mlx.h"
+# include <mlx.h>
 # include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -188,6 +188,7 @@ int		listen_key(int key, t_data *data);
 int		listen_mouse_moved(int x, int y, t_data *data);
 int		listen_mouse_released(int button, int x, int y, t_data *data);
 int		listen_mouse_pressed(int button, int x, int y, t_data *data);
+double	angle_vect(float *vect1, float *vect2);
 
 
 #endif

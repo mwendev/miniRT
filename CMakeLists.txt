@@ -24,6 +24,9 @@ set(SOURCE_FILES
         srcs/parse_utils.c
         srcs/terminate.c
         srcs/tracer.c
+        srcs/listen.c
+        srcs/parse_shapes.c
+        srcs/tracer_utils.c
         )
 
 add_executable(miniRT ${SOURCE_FILES} ${LIBFT_FILES})
