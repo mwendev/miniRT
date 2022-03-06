@@ -67,5 +67,6 @@ int main(int argc, char **argv)
 		terminate(NULL, "Invalid input", 1);
 	init_data(&data);
 	parse(argv[1], &data);
+	fill_image(&data);
 	init_window(&data);
 }

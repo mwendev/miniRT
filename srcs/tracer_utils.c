@@ -24,16 +24,13 @@ double	angle_vect(float *vect1, float *vect2)
 	return (acos(dot_prod/(mod_vect1 * mod_vect2)));
 }
 
-float	*camera_up(t_data *data)
+float	*cross_product(float *vect1, float *vect2)
 {
-	double	angle_nx;
-	double	angle_ny;
-	double	angle_nz;
+	float	*res;
 
-	angle_nx = angle_vect(data->camera.orient, (float[3]){1.0f,0.0f,0.0f});
-	angle_ny = angle_vect(data->camera.orient, (float[3]){0.0f,1.0f,0.0f});
-	angle_nz = angle_vect(data->camera.orient, (float[3]){0.0f,0.0f,1.0f});
+	res = malloc(sizeof(float) * 3);
+	res[0] = vect1[2] * vect2[3] - vect1[3] * vect2[2];
+	res[1] = vect1[3] * vect2[1] - vect1[1] * vect2[3];
+	res[2] = vect1[1] * vect2[2] - vect1[2] * vect2[1];
+	return (res);
 }
-
-void	camera_right(t_data *data)
-{}

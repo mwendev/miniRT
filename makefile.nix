@@ -7,7 +7,7 @@ W = -Wall -Werror -Wextra
 
 OBJ = obj/main.o obj/get_next_line.o obj/get_next_line_utils.o obj/parse.o
 obj/parse_utils.o obj/terminate.o obj/tracer.o obj/parse_shapes.o obj/listen.o \
-obj/tracer_utils.o
+obj/tracer_utils.o obj/tracer_camera.o
 
 $(NAME): $(OBJ) libft/libft.a
 	gcc $(OBJ) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -o miniRT
@@ -41,6 +41,9 @@ obj/listen.o: srcs/listen.c
 
 obj/listen.o: srcs/tracer_utils.c
 	gcc -c -g $(W) srcs/tracer_utils.c -o obj/tracer_utils.o
+
+obj/listen.o: srcs/tracer_camera.c
+	gcc -c -g $(W) srcs/tracer_camera.c -o obj/tracer_camera.o
 
 libft/libft.a:
 	$(MAKE) -C libft

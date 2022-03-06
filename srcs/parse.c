@@ -44,7 +44,7 @@ int	parse_camera(char *tr, t_data *data, int type)
 				return (1);
 			if (type == 3)
 				data->camera.fov = ft_atoi(tr + i);
-			while (tr[i] != ' ' && tr[i] != '\t')
+			while (tr[i] != ' ' && tr[i] != '\t' && tr[i] != '\0')
 				i++;
 		}
 	}

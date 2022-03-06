@@ -42,6 +42,7 @@ void	fill_image(t_data *data)
 	int	j;
 
 	i = -1;
+	pre_process_camera(data);
 	while (++i < data->scr_res_h)
 	{
 		j = -1;

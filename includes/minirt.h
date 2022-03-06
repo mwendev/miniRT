@@ -13,6 +13,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# define PI						3.1415926535897932384626433
+
 # define WIDTH					800
 # define HEIGHT					600
 
@@ -189,6 +191,9 @@ int		listen_mouse_moved(int x, int y, t_data *data);
 int		listen_mouse_released(int button, int x, int y, t_data *data);
 int		listen_mouse_pressed(int button, int x, int y, t_data *data);
 double	angle_vect(float *vect1, float *vect2);
+void	pre_process_camera(t_data *data);
+void	fill_image(t_data *data);
+float	*cross_product(float *vect1, float *vect2);
 
 
 #endif
