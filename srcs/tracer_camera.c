@@ -29,10 +29,10 @@ int	axis_up(double *angle_axes, t_data *data, float vect_axes[3][3])
 	angle_axes[2] = angle_vect(data->camera.orient, vect_axes[2]);
 	i = 0;
 	min_value = fabs(90 - angle_axes[0] * 180 / PI);
-	while (++i < 2)
+	while (++i <= 2)
 	{
 		tmp = fabs(90 - angle_axes[i] * 180 / PI);
-		if ((min_value + 5) > tmp)
+		if (min_value > tmp + 1)
 		{
 			min_value = tmp;
 			res_axis = i;
@@ -41,31 +41,27 @@ int	axis_up(double *angle_axes, t_data *data, float vect_axes[3][3])
 	return (res_axis);
 }
 
-float	*camera_up(t_data *data)
+void	camera_up_right(t_data *data)
 {
 	double			*angle_axes;
 	static float	vect_axes[3][3] = {
-	{0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f},
+	{0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f},
 	};
 	float			*interm_vect;
-	float			*res_vect;
 
-	interm_vect = cross_product(data->camera.orient,
-			vect_axes[axis_up(angle_axes, data, vect_axes)]);
-	res_vect = cross_product(data->camera.orient, interm_vect);
+	interm_vect = malloc(sizeof(float) * 3);
+	angle_axes = malloc(sizeof(double) * 3);
+	cross_product(data->camera.orient,
+			vect_axes[axis_up(angle_axes, data, vect_axes)], interm_vect);
+	cross_product(interm_vect, data->camera.orient, data->camera.up);
 	free(interm_vect);
-	return (res_vect);
-}
-
-void	camera_right(t_data *data)
-{
+	cross_product(data->camera.orient, data->camera.up, data->camera.right);
 }
 
 void	pre_process_camera(t_data *data)
 {
 	float	*test;
 
-	test = malloc(sizeof(float) * 3);
-	test = camera_up(data);
-	printf("%f\n", test[0]);
+	camera_up_right(data);
+	printf("%f\n", data->camera.up[0]);
 }

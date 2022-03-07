@@ -24,13 +24,9 @@ double	angle_vect(float *vect1, float *vect2)
 	return (acos(dot_prod/(mod_vect1 * mod_vect2)));
 }
 
-float	*cross_product(float *vect1, float *vect2)
+void	cross_product(float *vect1, float *vect2, float *res)
 {
-	float	*res;
-
-	res = malloc(sizeof(float) * 3);
-	res[0] = vect1[2] * vect2[3] - vect1[3] * vect2[2];
-	res[1] = vect1[3] * vect2[1] - vect1[1] * vect2[3];
-	res[2] = vect1[1] * vect2[2] - vect1[2] * vect2[1];
-	return (res);
+	res[0] = vect1[1] * vect2[2] - vect1[2] * vect2[1];
+	res[1] = vect1[2] * vect2[0] - vect1[0] * vect2[2];
+	res[2] = vect1[0] * vect2[1] - vect1[1] * vect2[0];
 }
