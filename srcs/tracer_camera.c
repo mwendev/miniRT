@@ -57,11 +57,3 @@ void	camera_up_right(t_data *data)
 	free(interm_vect);
 	cross_product(data->camera.orient, data->camera.up, data->camera.right);
 }
-
-void	pre_process_camera(t_data *data)
-{
-	float	*test;
-
-	camera_up_right(data);
-	printf("%f\n", data->camera.up[0]);
-}

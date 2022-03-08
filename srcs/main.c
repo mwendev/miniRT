@@ -67,6 +67,8 @@ int main(int argc, char **argv)
 		terminate(NULL, "Invalid input", 1);
 	init_data(&data);
 	parse(argv[1], &data);
+	data.scr_res_h = HEIGHT;
+	data.scr_res_w = WIDTH;
 	fill_image(&data);
 	init_window(&data);
 }
