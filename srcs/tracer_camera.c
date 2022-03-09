@@ -49,6 +49,7 @@ void	camera_up_right(t_data *data)
 	};
 	float			*interm_vect;
 
+	normalize_vector(data->camera.orient);
 	interm_vect = malloc(sizeof(float) * 3);
 	angle_axes = malloc(sizeof(double) * 3);
 	cross_product(data->camera.orient,
@@ -56,4 +57,6 @@ void	camera_up_right(t_data *data)
 	cross_product(interm_vect, data->camera.orient, data->camera.up);
 	free(interm_vect);
 	cross_product(data->camera.orient, data->camera.up, data->camera.right);
+	normalize_vector(data->camera.up);
+	normalize_vector(data->camera.right);
 }

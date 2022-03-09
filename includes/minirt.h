@@ -171,12 +171,14 @@ typedef struct s_data
 	t_mouse		*mouse;
 	float		cross_p[3];
 	int			curr_col;
-	float		scr_dist;
+	float		nearest_point; // will be considered if intersection occurred
+	char		intersection; // indicated that for this pixel intersection occurred
+//	float		scr_dist;
 	int			scr_res_w;
 	int			scr_res_h;
-	int			scr_w;
-	int			scr_h;
-	float		fov;
+//	int			scr_w;
+//	int			scr_h;
+//	float		fov;
 }	t_data;
 
 int		parse(char	*file, t_data *data);
