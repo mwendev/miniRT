@@ -32,6 +32,26 @@ float	*calculate_ray_vector(float pixel_size, int i, int j, t_data *data, float 
 	return (ray_v);
 }
 
+int	intersection_sphere(float *ray, t_data *data)
+{
+	float	b;
+	float	c;
+	float	d;
+
+	b = 2 * (ray[0] * (data->camera.coord[0] - data->spheres[0].coord[0]) +
+			ray[1] * (data->camera.coord[1] - data->spheres[0].coord[1]) +
+			ray[2] * (data->camera.coord[2] - data->spheres[0].coord[2]));
+	c = powf((data->camera.coord[0] - data->spheres[0].coord[0]), 2) +
+			powf((data->camera.coord[1] - data->spheres[0].coord[1]), 2) +
+			powf((data->camera.coord[2] - data->spheres[0].coord[2]), 2) -
+			powf((data->spheres[0].diameter / 2), 2);
+	d = powf(b, 2) - 4 * c;
+	if (d < 0)
+		return (0);
+	else
+		return (1);
+}
+
 void	fill_image(t_data *data)
 {
 	int		i;
@@ -53,7 +73,13 @@ void	fill_image(t_data *data)
 		{
 			ray_v = malloc(sizeof(float) * 3);
 			ray_v = calculate_ray_vector(pixel_size, i, j, data, ray_v);
+			normalize_vector(ray_v);
+			if (intersection_sphere(ray_v, data))
+				printf("1");
+			else
+				printf("0");
 			free(ray_v);
 		}
+		printf("\n");
 	}
 }

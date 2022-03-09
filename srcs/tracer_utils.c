@@ -12,16 +12,16 @@
 
 #include "../includes/minirt.h"
 
-double	angle_vect(float *vect1, float *vect2)
+float	angle_vect(float *vect1, float *vect2)
 {
-	double	dot_prod;
-	double	mod_vect1;
-	double	mod_vect2;
+	float	dot_prod;
+	float	mod_vect1;
+	float	mod_vect2;
 
 	dot_prod = vect1[0] * vect2[0] + vect1[1] * vect2[1] + vect1[2] * vect2[2];
-	mod_vect1 = sqrt(pow(vect1[0], 2) + pow(vect1[1], 2) + pow(vect1[2], 2));
-	mod_vect2 = sqrt(pow(vect2[0], 2) + pow(vect2[1], 2) + pow(vect2[2], 2));
-	return (acos(dot_prod/(mod_vect1 * mod_vect2)));
+	mod_vect1 = sqrtf(powf(vect1[0], 2) + powf(vect1[1], 2) + powf(vect1[2], 2));
+	mod_vect2 = sqrtf(powf(vect2[0], 2) + powf(vect2[1], 2) + powf(vect2[2], 2));
+	return (acosf(dot_prod/(mod_vect1 * mod_vect2)));
 }
 
 void	cross_product(float *vect1, float *vect2, float *res)

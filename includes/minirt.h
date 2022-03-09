@@ -169,6 +169,7 @@ typedef struct s_data
 	t_plane		*planes;
 	t_cylinder	*cylinders;
 	t_mouse		*mouse;
+	float		cross_p[3];
 	float		scr_dist;
 	int			scr_res_w;
 	int			scr_res_h;
@@ -192,7 +193,7 @@ int		listen_key(int key, t_data *data);
 int		listen_mouse_moved(int x, int y, t_data *data);
 int		listen_mouse_released(int button, int x, int y, t_data *data);
 int		listen_mouse_pressed(int button, int x, int y, t_data *data);
-double	angle_vect(float *vect1, float *vect2);
+float	angle_vect(float *vect1, float *vect2);
 void	camera_up_right(t_data *data);
 void	fill_image(t_data *data);
 void	cross_product(float *vect1, float *vect2, float *res);
