@@ -170,6 +170,7 @@ typedef struct s_data
 	t_cylinder	*cylinders;
 	t_mouse		*mouse;
 	float		cross_p[3];
+	int			curr_col;
 	float		scr_dist;
 	int			scr_res_w;
 	int			scr_res_h;
@@ -198,6 +199,7 @@ void	camera_up_right(t_data *data);
 void	fill_image(t_data *data);
 void	cross_product(float *vect1, float *vect2, float *res);
 void	normalize_vector(float *vector);
+void	put_pixel(t_data *data, int *i);
 
 
 #endif
