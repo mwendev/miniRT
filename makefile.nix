@@ -5,9 +5,9 @@ SRC_DIR := srcs/
 
 W = -Wall -Werror -Wextra
 
-OBJ = obj/main.o obj/get_next_line.o obj/get_next_line_utils.o obj/parse.o
+OBJ = obj/main.o obj/get_next_line.o obj/get_next_line_utils.o obj/parse.o \
 obj/parse_utils.o obj/terminate.o obj/tracer.o obj/parse_shapes.o obj/listen.o \
-obj/tracer_utils.o obj/tracer_camera.o
+obj/tracer_utils.o obj/tracer_camera.o obj/put_pixel.o
 
 $(NAME): $(OBJ) libft/libft.a
 	gcc $(OBJ) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -o miniRT
@@ -39,11 +39,14 @@ obj/parse_shapes.o: srcs/parse_shapes.c
 obj/listen.o: srcs/listen.c
 	gcc -c -g $(W) srcs/listen.c -o obj/listen.o
 
-obj/listen.o: srcs/tracer_utils.c
+obj/tracer_utils.o: srcs/tracer_utils.c
 	gcc -c -g $(W) srcs/tracer_utils.c -o obj/tracer_utils.o
 
-obj/listen.o: srcs/tracer_camera.c
+obj/tracer_camera.o: srcs/tracer_camera.c
 	gcc -c -g $(W) srcs/tracer_camera.c -o obj/tracer_camera.o
+
+obj/put_pixel.o: srcs/put_pixel.c
+	gcc -c -g $(W) srcs/put_pixel.c -o obj/put_pixel.o
 
 libft/libft.a:
 	$(MAKE) -C libft
