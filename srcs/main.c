@@ -56,7 +56,7 @@ void	init_window(t_data *data)
 	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 		&data->line_len, &data->endian);
 	set_listener(data);
-	mlx_loop(data->mlx);
+//	mlx_loop(data->mlx);
 }
 
 int main(int argc, char **argv)
@@ -67,8 +67,10 @@ int main(int argc, char **argv)
 		terminate(NULL, "Invalid input", 1);
 	init_data(&data);
 	parse(argv[1], &data);
-	data.scr_res_h = HEIGHT;
-	data.scr_res_w = WIDTH;
-	fill_image(&data);
+//	data.scr_res_h = HEIGHT;
+//	data.scr_res_w = WIDTH;
 	init_window(&data);
+	fill_image(&data);
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
+	mlx_loop(data.mlx);
 }

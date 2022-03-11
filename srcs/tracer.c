@@ -22,8 +22,10 @@ float	*calculate_ray_vector(float pixel_size, int *i, t_data *data,
 	float	ik;
 	float	jk;
 
-	ik = (float)(data->scr_res_h / 2 - i[0]) * pixel_size;
-	jk = (float)(data->scr_res_w / 2 - i[1]) * pixel_size;
+//	ik = (float)(data->scr_res_h / 2 - i[0]) * pixel_size;
+	ik = (float)(HEIGHT / 2 - i[0]) * pixel_size;
+//	jk = (float)(data->scr_res_w / 2 - i[1]) * pixel_size;
+	jk = (float)(WIDTH / 2 - i[1]) * pixel_size;
 	ray_v[0] = data->camera.orient[0] + data->camera.up[0] * ik
 		+ data->camera.right[0] * jk;
 	ray_v[1] = data->camera.orient[1] + data->camera.up[1] * ik
@@ -79,6 +81,10 @@ void	intersection_sphere(float *ray, t_data *data)
 int	get_color(t_data *data, int *i, float *ray_v)
 {
 	intersection_sphere(ray_v, data);
+	if (data->intersection == '1')
+		data->curr_col = data->ambient.color;
+	else
+		data->curr_col = 0;
 }
 
 void	fill_image(t_data *data)
@@ -90,11 +96,14 @@ void	fill_image(t_data *data)
 	i[0] = -1;
 	camera_up_right(data);
 	pixel_size = (float)(tan(data->camera.fov * PI / 2 / 180)
-			/ (float)(data->scr_res_w / 2));
-	while (++i[0] < data->scr_res_h)
+			/ (float)(WIDTH / 2));
+//			/ (float)(data->scr_res_w / 2));
+	while (++i[0] < HEIGHT)
+//	while (++i[0] < data->scr_res_h)
 	{
 		i[1] = -1;
-		while (++i[1] < data->scr_res_w)
+		while (++i[1] < WIDTH)
+//		while (++i[1] < data->scr_res_w)
 		{
 			data->intersection = '0';
 			ray_v = malloc(sizeof(float) * 3);

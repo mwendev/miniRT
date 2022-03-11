@@ -15,8 +15,8 @@
 
 # define PI						3.1415926535897932384626433
 
-# define WIDTH					800
-# define HEIGHT					600
+# define WIDTH					640
+# define HEIGHT					480
 
 # define ARROW_UP				126
 # define ARROW_DOWN				125
@@ -174,8 +174,8 @@ typedef struct s_data
 	float		nearest_point; // will be considered if intersection occurred
 	char		intersection; // indicated that for this pixel intersection occurred
 //	float		scr_dist;
-	int			scr_res_w;
-	int			scr_res_h;
+//	int			scr_res_w;
+//	int			scr_res_h;
 //	int			scr_w;
 //	int			scr_h;
 //	float		fov;

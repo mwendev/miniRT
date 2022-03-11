@@ -28,6 +28,7 @@ set(SOURCE_FILES
         srcs/parse_shapes.c
         srcs/tracer_utils.c
         srcs/tracer_camera.c
+        srcs/put_pixel.c
         )
 
 add_executable(miniRT ${SOURCE_FILES} ${LIBFT_FILES})
