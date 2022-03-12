@@ -88,8 +88,14 @@ int	get_color(t_data *data, int *i, float *ray_v)
 {
 	intersection_sphere(ray_v, data);
 	if (data->intersection == '1')
-		data->curr_col = create_trgb((int)(data->ambient.ratio * 255), data->ambient.rgb[0], data->ambient.rgb[1], data->ambient.rgb[2]);
+	{
+		data->curr_col = create_trgb((int) (data->ambient.ratio * 255),
+									 (int)((float)data->ambient.rgb[0] * data->ambient.ratio),
+									 (int)((float)data->ambient.rgb[1] * data->ambient.ratio),
+									 (int)((float)data->ambient.rgb[2] * data->ambient.ratio));
 //		data->curr_col = data->ambient.color;
+//		mlx_pixel_put(data->mlx, data->mlx_win, i[1], i[0], data->curr_col);
+	}
 	else
 		data->curr_col = 0;
 }
