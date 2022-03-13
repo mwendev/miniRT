@@ -40,3 +40,11 @@ void	normalize_vector(float *vector)
 	vector[1] = vector[1] / len;
 	vector[2] = vector[2] / len;
 }
+
+float	*vector_two_points(float *begin, float *end, float *res)
+{
+	res[0] = end[0] - begin[0];
+	res[1] = end[1] - begin[1];
+	res[2] = end[2] - begin[2];
+	return (res);
+}

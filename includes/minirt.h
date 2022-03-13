@@ -171,8 +171,11 @@ typedef struct s_data
 	t_mouse		*mouse;
 	float		cross_p[3];
 	int			curr_col;
+	int			curr_col_rgb[3];
 	float		nearest_point; // will be considered if intersection occurred
 	char		intersection; // indicated that for this pixel intersection occurred
+	char		inter_shape; // s - sphere, p - plane, c - cylinder, n - cone
+	float		light_dist;
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;
@@ -202,6 +205,7 @@ void	fill_image(t_data *data);
 void	cross_product(float *vect1, float *vect2, float *res);
 void	normalize_vector(float *vector);
 void	put_pixel(t_data *data, int *i);
+float	*vector_two_points(float *begin, float *end, float *res);
 
 
 #endif
