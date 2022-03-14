@@ -100,11 +100,8 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	mix_colors(t_data *data, int *rgb, float tr, float angle)
+void	mix_colors(t_data *data, int *rgb, float angle, float tr)
 {
-//	data->curr_col_rgb[0] = data->curr_col_rgb[0] + (int)((float)rgb[0] * fabs((double)cosf(angle)) * tr);
-//	data->curr_col_rgb[1] = data->curr_col_rgb[1] + (int)((float)rgb[1] * fabs((double)cosf(angle)) * tr);
-//	data->curr_col_rgb[2] = data->curr_col_rgb[2] + (int)((float)rgb[2] * fabs((double)cosf(angle)) * tr);
 	data->curr_col_rgb[0] = data->curr_col_rgb[0] + (int)((float)rgb[0] * fabs((double)cosf(angle)) * tr);
 	data->curr_col_rgb[1] = data->curr_col_rgb[1] + (int)((float)rgb[1] * fabs((double)cosf(angle)) * tr);
 	data->curr_col_rgb[2] = data->curr_col_rgb[2] + (int)((float)rgb[2] * fabs((double)cosf(angle)) * tr);
@@ -119,7 +116,7 @@ void	handle_spheres(float *ray, t_data *data)
 		check_nearest_point(data, t);
 	if (data->intersection == '1')
 	{
-		mix_colors(data, data->ambient.rgb, data->ambient.ratio, 0);
+		mix_colors(data, data->ambient.rgb, 0, data->ambient.ratio);
 //		data->curr_col = create_trgb(0,
 //		data->curr_col = create_trgb((int) (data->ambient.ratio * 255),
 //									 (int)((float)data->ambient.rgb[0] * data->ambient.ratio),
