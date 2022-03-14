@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 00:35:47 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/24 23:32:03 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:24:57 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 long long	ft_strrlen(char *str)
 {

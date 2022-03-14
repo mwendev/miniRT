@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 20:15:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/26 15:23:03 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:11 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 int	ft_itohexa(int *rgb, unsigned long *color)
 {

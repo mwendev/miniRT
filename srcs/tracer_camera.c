@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tracer_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aserdyuk <aserdyuk@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 20:11:10 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/04 20:11:12 by aserdyuk         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:22 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 /* z - 0
  * x - 1

@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 23:02:53 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/26 23:12:15 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:03 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 int	listen_mouse_pressed(int button, int x, int y, t_data *data)
 {

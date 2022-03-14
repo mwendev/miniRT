@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 23:41:02 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/26 23:40:47 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:20 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 void	free_cylinder(t_data *data)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tracer_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aserdyuk <aserdyuk@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:43:49 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/01 15:43:52 by aserdyuk         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:25 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 float	angle_vect(float *vect1, float *vect2)
 {

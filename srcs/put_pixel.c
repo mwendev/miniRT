@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 19:19:20 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/09 19:26:32 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:18 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 void	put_pixel(t_data *data, int *i)
 {

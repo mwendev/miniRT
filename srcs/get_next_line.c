@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 11:18:26 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/24 23:31:30 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:01 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 char	*store_to_line(char *s)
 {

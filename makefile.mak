@@ -6,7 +6,7 @@
 #    By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 10:00:09 by mwen              #+#    #+#              #
-#    Updated: 2022/03/11 14:42:23 by mwen             ###   ########.fr        #
+#    Updated: 2022/03/14 17:24:29 by mwen             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME		=	miniRT
 DIR_SRCS	=	srcs/
 SRC			=	*.c
 SRCS		=	$(addprefix $(DIR_SRCS), $(SRC))
+
+DIR_HEADERS	=	includes_mac/
 
 CFLAG		=	#-Wall -Wextra -Werror
 MFLAG		=	-framework OpenGL -framework AppKit
@@ -32,7 +34,7 @@ all:		$(NAME)
 $(NAME):
 			make -sC $(MINILIBX_DIR)
 			make -sC $(LIBFT_DIR)
-			gcc $(CFLAG) $(MFLAG) $(SRCS) $(LIBFT) $(MINILIBX) $^ -o $(NAME)
+			gcc $(CFLAG) $(MFLAG) $(SRCS) $(LIBFT) $(MINILIBX) -I $(DIR_HEADERS) $^ -o $(NAME)
 			printf '\033[32m[ ✔ ] %s\n\033[0m' "Created miniRT"
 
 norme:

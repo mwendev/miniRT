@@ -10,7 +10,7 @@ obj/parse_utils.o obj/terminate.o obj/tracer.o obj/parse_shapes.o obj/listen.o \
 obj/tracer_utils.o obj/tracer_camera.o obj/put_pixel.o
 
 $(NAME): $(OBJ) libft/libft.a
-	gcc $(OBJ) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -o miniRT
+	gcc $(OBJ) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT
 
 obj/main.o: srcs/main.c
 	gcc -c -g $(W) srcs/main.c -o obj/main.o

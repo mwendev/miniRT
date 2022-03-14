@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:11:51 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/26 16:15:35 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:09 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 int	parse_cy(char *str, t_data *data, int type, t_cylinder *new)
 {

@@ -6,11 +6,11 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 20:46:45 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/26 16:10:20 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:25:14 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 int	rewind_link(t_data *data)
 {
