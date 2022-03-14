@@ -31,6 +31,8 @@ set(SOURCE_FILES
         srcs/put_pixel.c
         )
 
+include_directories(includes)
+
 add_executable(miniRT ${SOURCE_FILES} ${LIBFT_FILES})
 
 target_link_libraries(miniRT mlx m z Xext X11)

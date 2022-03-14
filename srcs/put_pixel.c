@@ -14,7 +14,7 @@
 
 void	put_pixel(t_data *data, int *i)
 {
-	int	offset;
+//	int	offset;
 	char	*dst;
 
 	if (i[1] < WIDTH && i[0] < HEIGHT)
