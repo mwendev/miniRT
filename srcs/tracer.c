@@ -100,7 +100,14 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	mix_colors(t_data *data, int *rgb, float angle, float tr)
+void	mix_ambient(t_data *data, int *rgb, t_sphere *current, float tr)
+{
+	data->curr_col_rgb[0] = (int)((float)rgb[0] * tr);
+	data->curr_col_rgb[1] = (int)((float)rgb[1] * tr);
+	data->curr_col_rgb[2] = (int)((float)rgb[2] * tr);
+}
+
+void	mix_light(t_data *data, int *rgb, float angle, float tr)
 {
 	data->curr_col_rgb[0] = data->curr_col_rgb[0] + (int)((float)rgb[0] * fabs((double)cosf(angle)) * tr);
 	data->curr_col_rgb[1] = data->curr_col_rgb[1] + (int)((float)rgb[1] * fabs((double)cosf(angle)) * tr);
@@ -109,21 +116,18 @@ void	mix_colors(t_data *data, int *rgb, float angle, float tr)
 
 void	handle_spheres(float *ray, t_data *data)
 {
-	float	t;
+	float		t;
+	t_sphere	*current;
 
-	t = intersection_sphere(ray, data->camera.coord, data->spheres);
-	if (t > 0)
-		check_nearest_point(data, t);
-	if (data->intersection == '1')
+	current = data->spheres;
+	while (current != NULL)
 	{
-		mix_colors(data, data->ambient.rgb, 0, data->ambient.ratio);
-//		data->curr_col = create_trgb(0,
-//		data->curr_col = create_trgb((int) (data->ambient.ratio * 255),
-//									 (int)((float)data->ambient.rgb[0] * data->ambient.ratio),
-//									 (int)((float)data->ambient.rgb[1] * data->ambient.ratio),
-//									 (int)((float)data->ambient.rgb[2] * data->ambient.ratio));
-//		data->curr_col = data->ambient.color;
-//		mlx_pixel_put(data->mlx, data->mlx_win, i[1], i[0], data->curr_col);
+		t = intersection_sphere(ray, data->camera.coord, current);
+		if (t > 0)
+			check_nearest_point(data, t);
+		if (data->intersection == '1')
+			mix_ambient(data, data->ambient.rgb, current, data->ambient.ratio);
+		current = current->next;
 	}
 }
 
@@ -138,7 +142,6 @@ int	check_light(t_data *data, float *point)
 	t = intersection_sphere(ray, data->cross_p, data->spheres);
 	free(ray);
 	if (t > 0)
-//	if (fabs(t) > 0)
 		return (0);
 	return (1);
 }
@@ -160,14 +163,10 @@ int	get_color(t_data *data, float *ray_v, int *i)
 		cross_to_light = vector_two_points(data->cross_p, data->lights->coord, cross_to_light);
 		normalize_vector(cross_to_light);
 		norm_sp = normal_vector_sp(data, data->cross_p);
-		mix_colors(data, data->lights->rgb, angle_vect(norm_sp, cross_to_light), data->lights->ratio);
+		mix_light(data, data->lights->rgb, angle_vect(norm_sp, cross_to_light), data->lights->ratio);
 		free(cross_to_light);
 		free(norm_sp);
 	}
-//	data->curr_col = create_trgb(0,
-//								 (int)((float)data->ambient.rgb[0] * data->ambient.ratio),
-//								 (int)((float)data->ambient.rgb[1] * data->ambient.ratio),
-//								 (int)((float)data->ambient.rgb[2] * data->ambient.ratio));
 	data->curr_col = create_trgb(0,
 								 data->curr_col_rgb[0],
 								 data->curr_col_rgb[1],
@@ -184,13 +183,10 @@ void	fill_image(t_data *data)
 	camera_up_right(data);
 	pixel_size = (float)(tan(data->camera.fov * PI / 2 / 180)
 			/ (float)(WIDTH / 2));
-//			/ (float)(data->scr_res_w / 2));
 	while (++i[0] < HEIGHT)
-//	while (++i[0] < data->scr_res_h)
 	{
 		i[1] = -1;
 		while (++i[1] < WIDTH)
-//		while (++i[1] < data->scr_res_w)
 		{
 			data->intersection = '0';
 			ray_v = malloc(sizeof(float) * 3);
@@ -198,12 +194,7 @@ void	fill_image(t_data *data)
 			normalize_vector(ray_v);
 			get_color(data, ray_v, i);
 			put_pixel(data, i);
-//			if (data->intersection == '1')
-//				printf("1");
-//			else
-//				printf("0");
 			free(ray_v);
 		}
-//		printf("\n");
 	}
 }

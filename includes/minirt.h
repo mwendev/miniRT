@@ -92,6 +92,20 @@ typedef struct s_mouse
 	int	prev_y;
 }		t_mouse;
 
+/*
+ * 'c' - camera
+ * 'l' - light
+ * 's' - sphere
+ * 'p' - plane
+ * 'y' - cylinder
+ * 'o' - cone
+ */
+typedef struct s_selected
+{
+	char	shape;
+	int		number;
+}		t_selected;
+
 typedef struct s_ambient
 {
 	float			ratio;
@@ -169,6 +183,7 @@ typedef struct s_data
 	t_plane		*planes;
 	t_cylinder	*cylinders;
 	t_mouse		*mouse;
+	t_selected	selected;
 	float		cross_p[3];
 	int			curr_col;
 	int			curr_col_rgb[3];
