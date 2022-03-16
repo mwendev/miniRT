@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:49:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:06 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 20:34:44 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	init_window(t_data *data)
 		terminate(data, "Init image failed", 1);
 	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 		&data->line_len, &data->endian);
-	set_listener(data);
 //	mlx_loop(data->mlx);
 }
 
@@ -71,6 +70,6 @@ int main(int argc, char **argv)
 //	data.scr_res_w = WIDTH;
 	init_window(&data);
 	fill_image(&data);
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
+	set_listener(&data);
 	mlx_loop(data.mlx);
 }
