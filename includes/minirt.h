@@ -191,6 +191,7 @@ typedef struct s_data
 	char		intersection; // indicated that for this pixel intersection occurred
 	char		inter_shape; // s - sphere, p - plane, c - cylinder, n - cone
 	float		light_dist;
+	int			obj_counter;
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;
