@@ -42,19 +42,22 @@ void	intersection_coords(float *ray, t_data *data, float t)
 	data->cross_p[2] = data->camera.coord[2] + ray[2] * t;
 }
 
-void	check_nearest_point(t_data *data, float t, int i)
+int	check_nearest_point(t_data *data, float t, int i)
 {
 	if (data->intersection == '0')
 	{
 		data->intersection = '1';
 		data->nearest_point = t;
 		data->obj_counter = i;
+		return (1);
 	}
 	else if (data->nearest_point > t)
 	{
 		data->nearest_point = t;
 		data->obj_counter = i;
+		return (1);
 	}
+	return (0);
 }
 
 float	intersection_sphere(float *ray, float *origin, t_sphere *sphere)
@@ -106,9 +109,9 @@ int	create_trgb(int t, int r, int g, int b)
 
 void	mix_ambient(t_data *data, int *rgb, t_sphere *current, float tr)
 {
-	data->curr_col_rgb[0] = (int)((float)rgb[0] * tr);
-	data->curr_col_rgb[1] = (int)((float)rgb[1] * tr);
-	data->curr_col_rgb[2] = (int)((float)rgb[2] * tr);
+	data->curr_col_rgb[0] = (int)((float)rgb[0] * tr * current->rgb[0] / 255);
+	data->curr_col_rgb[1] = (int)((float)rgb[1] * tr * current->rgb[1] / 255);
+	data->curr_col_rgb[2] = (int)((float)rgb[2] * tr * current->rgb[2] / 255);
 }
 
 void	mix_light(t_data *data, int *rgb, float angle, float tr)
@@ -131,8 +134,8 @@ void	handle_spheres(float *ray, t_data *data)
 		t = intersection_sphere(ray, data->camera.coord, current);
 		if (t > 0)
 		{
-			check_nearest_point(data, t, i);
-			mix_ambient(data, data->ambient.rgb, current, data->ambient.ratio);
+			if (check_nearest_point(data, t, i))
+				mix_ambient(data, data->ambient.rgb, current, data->ambient.ratio);
 		}
 //		if (data->intersection == '1')
 //			mix_ambient(data, data->ambient.rgb, current, data->ambient.ratio);
