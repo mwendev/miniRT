@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:06:46 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/16 16:38:30 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 20:36:12 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,19 @@ void	intersection_coords(float *ray, t_data *data, float t)
 	data->cross_p[2] = data->camera.coord[2] + ray[2] * t;
 }
 
-void	check_nearest_point(t_data *data, float t)
+void	check_nearest_point(t_data *data, float t, int i)
 {
 	if (data->intersection == '0')
 	{
 		data->intersection = '1';
 		data->nearest_point = t;
+		data->obj_counter = i;
 	}
-	else if (data->nearest_point < t)
+	else if (data->nearest_point > t)
+	{
 		data->nearest_point = t;
+		data->obj_counter = i;
+	}
 }
 
 float	intersection_sphere(float *ray, float *origin, t_sphere *sphere)
@@ -85,12 +89,12 @@ float	intersection_sphere(float *ray, float *origin, t_sphere *sphere)
 	return (0);
 }
 
-float	*normal_vector_sp(t_data *data, float *intersect)
+float	*normal_vector_sp(t_sphere *current, float *intersect)
 {
 	float	*res;
 
 	res = malloc(sizeof(float) * 3);
-	res = vector_two_points(data->spheres->coord, intersect, res);
+	res = vector_two_points(current->coord, intersect, res);
 	normalize_vector(res);
 	return (res);
 }
@@ -118,16 +122,22 @@ void	handle_spheres(float *ray, t_data *data)
 {
 	float		t;
 	t_sphere	*current;
+	int			i;
 
+	i = 0;
 	current = data->spheres;
 	while (current != NULL)
 	{
 		t = intersection_sphere(ray, data->camera.coord, current);
 		if (t > 0)
-			check_nearest_point(data, t);
-		if (data->intersection == '1')
+		{
+			check_nearest_point(data, t, i);
 			mix_ambient(data, data->ambient.rgb, current, data->ambient.ratio);
+		}
+//		if (data->intersection == '1')
+//			mix_ambient(data, data->ambient.rgb, current, data->ambient.ratio);
 		current = current->next;
+		i++;
 	}
 }
 
@@ -135,11 +145,19 @@ int	check_light(t_data *data, float *point)
 {
 	float	t;
 	float	*ray;
+	t_sphere	*current;
 
 	ray = malloc(sizeof(float) * 3);
 	ray = vector_two_points(point, data->lights->coord, ray);
 	normalize_vector(ray);
-	t = intersection_sphere(ray, data->cross_p, data->spheres);
+	current = data->spheres;
+	while (current != NULL)
+	{
+		t = intersection_sphere(ray, data->cross_p, current);
+		if (t > 0)
+			break;
+		current = current->next;
+	}
 	free(ray);
 	if (t > 0)
 		return (0);
@@ -149,8 +167,10 @@ int	check_light(t_data *data, float *point)
 
 int	get_color(t_data *data, float *ray_v, int *i)
 {
-	float	*norm_sp;
-	float	*cross_to_light;
+	float		*norm_sp;
+	float		*cross_to_light;
+	t_sphere	*current;
+	int			j;
 
 	data->curr_col_rgb[0] = 0;
 	data->curr_col_rgb[1] = 0;
@@ -159,10 +179,14 @@ int	get_color(t_data *data, float *ray_v, int *i)
 	intersection_coords(ray_v, data, data->nearest_point - 0.0001);
 	if (data->intersection == '1' && check_light(data, data->cross_p))
 	{
+		j = -1;
+		current = data->spheres;
+		while (++j < data->obj_counter)
+			current = current->next;
 		cross_to_light = malloc(sizeof (float) * 3);
 		cross_to_light = vector_two_points(data->cross_p, data->lights->coord, cross_to_light);
 		normalize_vector(cross_to_light);
-		norm_sp = normal_vector_sp(data, data->cross_p);
+		norm_sp = normal_vector_sp(current, data->cross_p);
 		mix_light(data, data->lights->rgb, angle_vect(norm_sp, cross_to_light), data->lights->ratio);
 		free(cross_to_light);
 		free(norm_sp);
@@ -198,4 +222,5 @@ void	fill_image(t_data *data)
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	put_menu(data);
 }

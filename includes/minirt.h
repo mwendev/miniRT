@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/16 12:46:02 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 20:38:40 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define HEIGHT					480
 
 # include <math.h>
+// # include "../minilibx_opengl/mlx.h"
 # include <mlx.h>
 # include "get_next_line.h"
 # include <unistd.h>
@@ -26,8 +27,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-# include <X11/keysym.h>
-# include <X11/X.h>
+# include "key.h"
 # include <stdio.h>
 
 typedef struct s_params_struct
@@ -145,6 +145,7 @@ typedef struct s_data
 	char		intersection; // indicated that for this pixel intersection occurred
 	char		inter_shape; // s - sphere, p - plane, c - cylinder, n - cone
 	float		light_dist;
+	int			obj_counter;
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;
@@ -175,6 +176,8 @@ void	cross_product(float *vect1, float *vect2, float *res);
 void	normalize_vector(float *vector);
 void	put_pixel(t_data *data, int *i);
 float	*vector_two_points(float *begin, float *end, float *res);
-
+void	select_shape(char shape, t_data *data);
+int		create_trgb(int t, int r, int g, int b);
+void	put_menu(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:49:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/16 16:38:50 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 20:34:44 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,6 @@ void	set_listener(t_data *data)
 	mlx_hook(data->mlx_win, 17, 0, shut_down, data);
 }
 
-void	draw_background(t_fdf *data)
-{
-	int	*image;
-	int	i;
-	int	menu_wid;
-
-	image = (int *)data->img_addr;
-	i = -1;
-	menu_wid = WIDTH / 4;
-	while (++i < WIDTH * HEIGHT)
-		if (i % WIDTH < menu_wid)
-			image[i] = MENU_COL;
-}
-
 void	init_window(t_data *data)
 {
 	data->mlx = mlx_init();
@@ -69,7 +55,6 @@ void	init_window(t_data *data)
 		terminate(data, "Init image failed", 1);
 	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 		&data->line_len, &data->endian);
-	draw_background(data);
 //	mlx_loop(data->mlx);
 }
 
@@ -85,7 +70,6 @@ int main(int argc, char **argv)
 //	data.scr_res_w = WIDTH;
 	init_window(&data);
 	fill_image(&data);
-	// mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	set_listener(&data);
 	mlx_loop(data.mlx);
 }

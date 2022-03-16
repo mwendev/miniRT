@@ -6,12 +6,14 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 12:24:17 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/16 12:46:23 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 16:57:01 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_H
 # define KEY_H
 
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 #endif
