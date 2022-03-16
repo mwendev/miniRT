@@ -110,15 +110,27 @@ int	create_trgb(int t, int r, int g, int b)
 void	mix_ambient(t_data *data, int *rgb, t_sphere *current, float tr)
 {
 	data->curr_col_rgb[0] = (int)((float)rgb[0] * tr * current->rgb[0] / 255);
+	if (data->curr_col_rgb[0] > 255)
+		data->curr_col_rgb[0] = 255;
 	data->curr_col_rgb[1] = (int)((float)rgb[1] * tr * current->rgb[1] / 255);
+	if (data->curr_col_rgb[1] > 255)
+		data->curr_col_rgb[1] = 255;
 	data->curr_col_rgb[2] = (int)((float)rgb[2] * tr * current->rgb[2] / 255);
+	if (data->curr_col_rgb[2] > 255)
+		data->curr_col_rgb[2] = 255;
 }
 
 void	mix_light(t_data *data, int *rgb, float angle, float tr)
 {
 	data->curr_col_rgb[0] = data->curr_col_rgb[0] + (int)((float)rgb[0] * fabs((double)cosf(angle)) * tr);
+	if (data->curr_col_rgb[0] > 255)
+		data->curr_col_rgb[0] = 255;
 	data->curr_col_rgb[1] = data->curr_col_rgb[1] + (int)((float)rgb[1] * fabs((double)cosf(angle)) * tr);
+	if (data->curr_col_rgb[1] > 255)
+		data->curr_col_rgb[1] = 255;
 	data->curr_col_rgb[2] = data->curr_col_rgb[2] + (int)((float)rgb[2] * fabs((double)cosf(angle)) * tr);
+	if (data->curr_col_rgb[2] > 255)
+		data->curr_col_rgb[2] = 255;
 }
 
 void	handle_spheres(float *ray, t_data *data)
@@ -179,7 +191,7 @@ int	get_color(t_data *data, float *ray_v, int *i)
 	data->curr_col_rgb[1] = 0;
 	data->curr_col_rgb[2] = 0;
 	handle_spheres(ray_v, data);
-	intersection_coords(ray_v, data, data->nearest_point - 0.0001);
+	intersection_coords(ray_v, data, data->nearest_point - 0.0002);
 	if (data->intersection == '1' && check_light(data, data->cross_p))
 	{
 		j = -1;

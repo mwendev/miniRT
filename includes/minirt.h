@@ -15,8 +15,8 @@
 
 # define PI						3.1415926535897932384626433
 
-# define WIDTH					640
-# define HEIGHT					480
+# define WIDTH					800
+# define HEIGHT					600
 
 # define ARROW_UP				126
 # define ARROW_DOWN				125
