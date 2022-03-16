@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:50 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 13:11:13 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@
 # define ARROW_LEFT				123
 # define ARROW_RIGHT			124
 
-# define MAIN_PAD_ESC			53
+# define MAC_C	0x08
+# define MAC_L	0x25
+# define MAC_S	0x01
+# define MAC_P	0x23
+# define MAC_Y	0x10
+# define MAC_O	0x1F
+
+# define MAC_EXC				53
 # define MAIN_PAD_W				13
-# define MAIN_PAD_S				1
 # define MAIN_PAD_A				0
 # define MAIN_PAD_D				2
 # define MAIN_PAD_Q				12
@@ -40,30 +46,6 @@
 # define MOUSE_LEFT_BUTTON		1
 # define MOUSE_SCROLL_UP		4
 # define MOUSE_SCROLL_DOWN		5
-
-# define LX_ARROW_UP			98
-# define LX_ARROW_DOWN			104
-# define LX_ARROW_LEFT			100
-# define LX_ARROW_RIGHT			102
-
-# define LX_MAIN_PAD_ESC		9
-# define LX_MAIN_PAD_W			25
-# define LX_MAIN_PAD_S			39
-# define LX_MAIN_PAD_A			38
-# define LX_MAIN_PAD_D			40
-
-# define LX_MAIN_PAD_Q			24
-# define LX_MAIN_PAD_E			26
-# define LX_MAIN_PAD_I			31
-# define LX_MAIN_PAD_P			33
-# define LX_MAIN_PAD_Z			52
-# define LX_MAIN_PAD_X			53
-# define LX_MAIN_PAD_PLUS		24
-# define LX_MAIN_PAD_MINUS		21
-
-# define LX_MOUSE_LEFT_BUTTON	108
-# define LX_MOUSE_SCROLL_UP		234
-# define LX_MOUSE_SCROLL_DOWN	233
 
 # include <math.h>
 # include "../minilibx_opengl/mlx.h"
@@ -90,6 +72,20 @@ typedef struct s_mouse
 	int	prev_x;
 	int	prev_y;
 }		t_mouse;
+
+/*
+ * 'c' - camera
+ * 'l' - light
+ * 's' - sphere
+ * 'p' - plane
+ * 'y' - cylinder
+ * 'o' - cone
+ */
+typedef struct s_selected
+{
+	char	shape;
+	int		number;
+}	t_selected;
 
 typedef struct s_ambient
 {
@@ -168,6 +164,7 @@ typedef struct s_data
 	t_plane		*planes;
 	t_cylinder	*cylinders;
 	t_mouse		*mouse;
+	t_selected	selected;
 	float		cross_p[3];
 	int			curr_col;
 	int			curr_col_rgb[3];

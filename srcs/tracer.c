@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:06:46 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:28 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 16:38:30 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,4 +197,5 @@ void	fill_image(t_data *data)
 			free(ray_v);
 		}
 	}
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }

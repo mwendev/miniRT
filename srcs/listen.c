@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 23:02:53 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:03 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/16 13:10:51 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,20 @@ int	listen_mouse_moved(int x, int y, t_data *data)
 
 int	listen_key(int key, t_data *data)
 {
-	if (key == MAIN_PAD_ESC || key == LX_MAIN_PAD_ESC)
+	if (key == MAC_EXC || key == XK_Escape)
 		terminate(data, NULL, 1);
-	if (key == MAIN_PAD_D || key == MAIN_PAD_A || key == MAIN_PAD_W
-		|| key == MAIN_PAD_S || key == MAIN_PAD_E || key == MAIN_PAD_Q
-		|| key == LX_MAIN_PAD_D || key == LX_MAIN_PAD_A || key == LX_MAIN_PAD_W
-		|| key == LX_MAIN_PAD_S || key == LX_MAIN_PAD_E || key == LX_MAIN_PAD_Q)
-		printf("need rotate function\n");
+	else if (key == MAC_C || key == XK_C)
+		select('c', data);
+	else if (key == MAC_L || key == XK_L)
+		select('l', data);
+	else if (key == MAC_S || key == XK_S)
+		select('s', data);
+	else if (key == MAC_P || key == XK_P)
+		select('p', data);
+	else if (key == MAC_Y || key == XK_Y)
+		select('y', data);
+	else if (key == MAC_O || key == XK_O)
+		select('o', data);
 	else if (key == ARROW_LEFT || key == ARROW_RIGHT || key == ARROW_UP
 		|| key == ARROW_DOWN || key == LX_ARROW_LEFT || key == LX_ARROW_RIGHT
 		|| key == LX_ARROW_UP || key == LX_ARROW_DOWN)
