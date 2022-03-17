@@ -23,5 +23,6 @@ void	select_shape(char shape, t_data *data)
 	img = mlx_new_image(data->mlx, 200, HEIGHT);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, img, 0, 0);
 	data->selected.shape = shape;
+	mlx_destroy_image(data->mlx, img);
 	put_menu(data);
 }

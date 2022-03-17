@@ -7,7 +7,8 @@ W = -Wall -Werror -Wextra
 
 OBJ = obj/main.o obj/get_next_line.o obj/get_next_line_utils.o obj/parse.o \
 obj/parse_utils.o obj/terminate.o obj/tracer.o obj/parse_shapes.o obj/listen.o \
-obj/tracer_utils.o obj/tracer_camera.o obj/put_pixel.o
+obj/vector_utils.o obj/tracer_camera.o obj/put_pixel.o obj/color_utils.o \
+obj/sphere_utils.o
 
 $(NAME): $(OBJ) libft/libft.a
 	gcc $(OBJ) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT
@@ -39,14 +40,20 @@ obj/parse_shapes.o: srcs/parse_shapes.c
 obj/listen.o: srcs/listen.c
 	gcc -c -g $(W) srcs/listen.c -I ./includes -o obj/listen.o
 
-obj/tracer_utils.o: srcs/tracer_utils.c
-	gcc -c -g $(W) srcs/tracer_utils.c -I ./includes -o obj/tracer_utils.o
+obj/vector_utils.o: srcs/vector_utils.c
+	gcc -c -g $(W) srcs/vector_utils.c -I ./includes -o obj/vector_utils.o
 
 obj/tracer_camera.o: srcs/tracer_camera.c
 	gcc -c -g $(W) srcs/tracer_camera.c -I ./includes -o obj/tracer_camera.o
 
 obj/put_pixel.o: srcs/put_pixel.c
 	gcc -c -g $(W) srcs/put_pixel.c -I ./includes -o obj/put_pixel.o
+
+obj/color_utils.o: srcs/color_utils.c
+	gcc -c -g $(W) srcs/color_utils.c -I ./includes -o obj/color_utils.o
+
+obj/plane_utils.o: srcs/plane_utils.c
+	gcc -c -g $(W) srcs/plane_utils.c -I ./includes -o obj/plane_utils.o
 
 libft/libft.a:
 	$(MAKE) -C libft

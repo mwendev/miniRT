@@ -27,11 +27,12 @@ set(SOURCE_FILES
         srcs/tracer.c
         srcs/listen.c
         srcs/parse_shapes.c
-        srcs/tracer_utils.c
+        srcs/vector_utils.c
         srcs/tracer_camera.c
         srcs/put_pixel.c
         srcs/select.c
-        )
+        srcs/color_utils.c
+        srcs/sphere_utils.c srcs/plane_utils.c)
 
 include_directories(includes)
 
