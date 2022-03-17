@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 23:02:53 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/16 19:20:10 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 18:52:08 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	listen_mouse_moved(int x, int y, t_data *data)
 
 int	listen_key(int key, t_data *data)
 {
-//	printf("%d\n", key);
 	if (key == MAC_EXC || key == XK_Escape)
 		terminate(data, NULL, 1);
 	else if (key == MAC_C || key == XK_c)
@@ -63,11 +62,9 @@ int	listen_key(int key, t_data *data)
 		select_shape('y', data);
 	else if (key == MAC_O || key == XK_o)
 		select_shape('o', data);
-	return (0);
-}
-
-int	shut_down(t_data *data)
-{
-	terminate(data, NULL, 1);
+	else if (key == MAC_1 || key == MAC_2 || key == MAC_3 || key == MAC_Q
+		|| key == MAC_W || key == MAC_E || key == XK_1 || key == XK_2
+		|| key == XK_3 || key == XK_q || key == XK_w || key == XK_e)
+		translate(key, data);
 	return (0);
 }

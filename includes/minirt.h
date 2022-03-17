@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/16 20:38:40 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 21:14:02 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_ambient
 {
 	float			ratio;
 	int				rgb[3];
-	unsigned long	color;
 }	t_ambient;
 
 typedef struct s_camera
@@ -82,7 +81,6 @@ typedef struct s_light
 	float			coord[3];
 	float			ratio;
 	int				rgb[3];
-	unsigned long	color;
 	struct s_light	*next;
 	struct s_light	*prev;
 }	t_light;
@@ -92,7 +90,6 @@ typedef struct s_sphere
 	float			coord[3];
 	float			diameter;
 	int				rgb[3];
-	unsigned long	color;
 	struct s_sphere	*next;
 	struct s_sphere	*prev;
 }	t_sphere;
@@ -103,7 +100,6 @@ typedef struct s_plane
 	float			orient[3];
 	int				rgb[3];
 	int				rotation[3];
-	unsigned long	color;
 	struct s_plane	*next;
 	struct s_plane	*prev;
 }	t_plane;
@@ -116,7 +112,6 @@ typedef struct s_cylinder
 	float				height;
 	int					rgb[3];
 	int					rotation[3];
-	unsigned long		color;
 	struct s_cylinder	*next;
 	struct s_cylinder	*prev;
 }	t_cylinder;
@@ -158,13 +153,12 @@ int		parse(char	*file, t_data *data);
 int		terminate(t_data *data, char *msg, int if_exit);
 int		stof(char *str, float *f, int if_free);
 char	*parse_info(char *str, int *i);
-int		parse_color(char *str, int *rgb, unsigned long *color);
+int		parse_color(char *line, int *rgb);
 int		parse_farray(char *str, float *array, int orientation);
 int		parse_light(char *str, t_data *data, int type, t_light *new);
 int		parse_sp(char *str, t_data *data, int type, t_sphere *new);
 int		parse_pl(char *str, t_data *data, int type, t_plane *new);
 int		parse_cy(char *str, t_data *data, int type, t_cylinder *new);
-int		shut_down(t_data *data);
 int		listen_key(int key, t_data *data);
 int		listen_mouse_moved(int x, int y, t_data *data);
 int		listen_mouse_released(int button, int x, int y, t_data *data);
@@ -185,5 +179,7 @@ int		check_nearest_point(t_data *data, float t, int i);
 float	intersection_sphere(float *ray, float *origin, t_sphere *sphere);
 void	handle_spheres(float *ray, t_data *data);
 void	handle_planes(float *ray, t_data *data);
+int		rewind_link(t_data *data);
+void	translate(int key, t_data *data);
 
 #endif
