@@ -6,14 +6,12 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 21:14:02 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 22:01:48 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-
-# define PI						3.1415926535897932384626433
 
 # define WIDTH					800
 # define HEIGHT					600

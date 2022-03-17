@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:06:46 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 20:52:15 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 22:02:09 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	fill_image(t_data *data)
 
 	i[0] = -1;
 	camera_up_right(data);
-	pixel_size = (float)(tan(data->camera.fov * PI / 2 / 180)
+	pixel_size = (float)(tan(data->camera.fov * M_PI / 2 / 180)
 			/ (float)(WIDTH / 2));
 	while (++i[0] < HEIGHT)
 	{

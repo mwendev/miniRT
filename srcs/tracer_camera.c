@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 20:11:10 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:22 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 22:01:09 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	axis_up(double *angle_axes, t_data *data, float vect_axes[3][3])
 	angle_axes[1] = angle_vect(data->camera.orient, vect_axes[1]);
 	angle_axes[2] = angle_vect(data->camera.orient, vect_axes[2]);
 	i = 0;
-	min_value = fabs(90 - angle_axes[0] * 180 / PI);
+	min_value = fabs(90 - angle_axes[0] * 180 / M_PI);
 	while (++i <= 2)
 	{
-		tmp = fabs(90 - angle_axes[i] * 180 / PI);
+		tmp = fabs(90 - angle_axes[i] * 180 / M_PI);
 		if (min_value > tmp + 1)
 		{
 			min_value = tmp;
