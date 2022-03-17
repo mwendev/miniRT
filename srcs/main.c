@@ -35,6 +35,7 @@ void	init_data(t_data *data)
 
 void	set_listener(t_data *data)
 {
+	mlx_key_hook(data->mlx_win, listen_key, data);
 	mlx_hook(data->mlx_win, 2, 0, listen_key, data);
 	mlx_hook(data->mlx_win, 4, 1L<<2, listen_mouse_pressed, data);
 	mlx_hook(data->mlx_win, 5, 1L<<3, listen_mouse_released, data);
@@ -47,7 +48,7 @@ void	init_window(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		terminate(data, "Init mlx failed", 1);
-	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "miniRT");
+	data->mlx_win = mlx_new_window(data->mlx, WIDTH + 200, HEIGHT, "miniRT");
 	if (!data->mlx_win)
 		terminate(data, "Init window failed", 1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);

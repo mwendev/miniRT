@@ -236,6 +236,6 @@ void	fill_image(t_data *data)
 			free(ray_v);
 		}
 	}
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 200, 0);
 	put_menu(data);
 }

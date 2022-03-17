@@ -48,19 +48,20 @@ int	listen_mouse_moved(int x, int y, t_data *data)
 
 int	listen_key(int key, t_data *data)
 {
+//	printf("%d\n", key);
 	if (key == MAC_EXC || key == XK_Escape)
 		terminate(data, NULL, 1);
-	else if (key == MAC_C || key == XK_C)
+	else if (key == MAC_C || key == XK_c)
 		select_shape('c', data);
-	else if (key == MAC_L || key == XK_L)
+	else if (key == MAC_L || key == XK_l)
 		select_shape('l', data);
-	else if (key == MAC_S || key == XK_S)
+	else if (key == MAC_S || key == XK_s)
 		select_shape('s', data);
-	else if (key == MAC_P || key == XK_P)
+	else if (key == MAC_P || key == XK_p)
 		select_shape('p', data);
-	else if (key == MAC_Y || key == XK_Y)
+	else if (key == MAC_Y || key == XK_y)
 		select_shape('y', data);
-	else if (key == MAC_O || key == XK_O)
+	else if (key == MAC_O || key == XK_o)
 		select_shape('o', data);
 	return (0);
 }

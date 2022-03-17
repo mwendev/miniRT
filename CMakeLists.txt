@@ -14,6 +14,7 @@ set(LIBFT_FILES
         libft/ft_calloc.c
         libft/ft_bzero.c
         libft/ft_memset.c
+        libft/ft_itoa.c
         )
 
 set(SOURCE_FILES
@@ -29,6 +30,7 @@ set(SOURCE_FILES
         srcs/tracer_utils.c
         srcs/tracer_camera.c
         srcs/put_pixel.c
+        srcs/select.c
         )
 
 include_directories(includes)

@@ -14,10 +14,14 @@
 
 void	select_shape(char shape, t_data *data)
 {
+	void	*img;
+
 	if (data->selected.shape == shape && shape != 'c')
 		data->selected.number++;
 	else
 		data->selected.number = 0;
+	img = mlx_new_image(data->mlx, 200, HEIGHT);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, img, 0, 0);
 	data->selected.shape = shape;
 	put_menu(data);
 }
