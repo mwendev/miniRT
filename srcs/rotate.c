@@ -1,33 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.h                                              :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 12:24:17 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 18:26:17 by mwen             ###   ########.fr       */
+/*   Created: 2022/03/17 21:10:16 by mwen              #+#    #+#             */
+/*   Updated: 2022/03/17 21:10:24 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_H
-# define KEY_H
-# define MAC_C    0x08
-# define MAC_L    0x25
-# define MAC_S    0x01
-# define MAC_P    0x23
-# define MAC_Y    0x10
-# define MAC_O    0x1F
-# define MAC_EXC  0x00
-# define MAC_1	0xffb1
-# define MAC_2	0xffb2
-# define MAC_3	0xffb3
-# define MAC_Q	0x0071
-# define MAC_W	0x0077
-# define MAC_E	0x0065
+#include "minirt.h"
 
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <X11/keysymdef.h>
-
-#endif

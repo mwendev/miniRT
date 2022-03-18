@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 12:24:17 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/16 19:07:50 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 20:13:22 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 # define MAC_Y	0x10
 # define MAC_O	0x1F
 
-# define XK_C	0x08
-# define XK_L	0x25
-# define XK_S	0x01
-# define XK_P	0x23
-# define XK_Y	0x10
-# define XK_O	0x1F
+# define XK_c	0x08
+# define XK_l	0x25
+# define XK_s	0x01
+# define XK_p	0x23
+# define XK_y	0x10
+# define XK_o	0x1F
 
 # define MAC_1	18
 # define MAC_2	19
@@ -42,9 +42,9 @@
 # define XK_1	18
 # define XK_2	19
 # define XK_3	20
-# define XK_Q	12
-# define XK_W	13
-# define XK_E	14
+# define XK_q	12
+# define XK_w	13
+# define XK_e	14
 
 # define MAC_EXC	53
 # define XK_Escape	53

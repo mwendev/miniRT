@@ -6,13 +6,13 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 20:15:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:11 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 20:43:47 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	ft_itohexa(int *rgb, unsigned long *color)
+int	check_color(int *rgb)
 {
 	int	i;
 
@@ -20,7 +20,6 @@ int	ft_itohexa(int *rgb, unsigned long *color)
 	while (++i < 3)
 		if (rgb[i] > 255 || rgb[i] < 0)
 			return (1);
-	*color = ((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + (rgb[2] & 0xff);
 	return (0);
 }
 
@@ -79,7 +78,7 @@ int	parse_farray(char *line, float *array, int orientation)
 	return (0);
 }
 
-int	parse_color(char *line, int *rgb, unsigned long *color)
+int	parse_color(char *line, int *rgb)
 {
 	int		i;
 	char	**split;
@@ -101,7 +100,7 @@ int	parse_color(char *line, int *rgb, unsigned long *color)
 		free(split[i]);
 	}
 	free(split);
-	if (ft_itohexa(rgb, color) || i != 3)
+	if (check_color(rgb) || i != 3)
 		return (terminate(NULL, "Error\nRGB has 3 values in range 0-255", 0));
 	return (0);
 }

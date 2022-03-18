@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:06:46 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/16 20:36:12 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 22:02:09 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int	get_color(t_data *data, float *ray_v, int *i)
 	}
 	data->curr_col = create_trgb(
 			0, data->curr_col_rgb[0], data->curr_col_rgb[1], data->curr_col_rgb[2]);
+	return (data->curr_col);
 }
 
 void	fill_image(t_data *data)
@@ -135,7 +136,7 @@ void	fill_image(t_data *data)
 
 	i[0] = -1;
 	camera_up_right(data);
-	pixel_size = (float)(tan(data->camera.fov * PI / 2 / 180)
+	pixel_size = (float)(tan(data->camera.fov * M_PI / 2 / 180)
 			/ (float)(WIDTH / 2));
 	while (++i[0] < HEIGHT)
 	{
@@ -152,5 +153,4 @@ void	fill_image(t_data *data)
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 200, 0);
-	put_menu(data);
 }

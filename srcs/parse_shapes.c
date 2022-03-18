@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:11:51 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:09 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 20:45:37 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parse_cy(char *str, t_data *data, int type, t_cylinder *new)
 						1)) || (type == 3 && stof(parse_info(str, &i),
 						&new->diameter, 1)) || (type == 4 && stof(parse_info
 						(str, &i), &new->height, 1)) || (type == 5
-					&& parse_color(parse_info(str, &i), new->rgb, &new->color)))
+					&& parse_color(parse_info(str, &i), new->rgb)))
 				return (terminate(data, NULL, 0));
 	if (type > 5 || new->diameter <= 0 || new->height <= 0)
 		return (terminate(data, "Error\nInvalid params to cylinder", 0));
@@ -65,7 +65,7 @@ int	parse_pl(char *str, t_data *data, int type, t_plane *new)
 			if ((type == 1 && parse_farray(parse_info(str, &i), new->coord, 0))
 				|| (type == 2 && parse_farray(parse_info(str, &i),
 						new->orient, 1)) || (type == 3 && parse_color
-					(parse_info(str, &i), new->rgb, &new->color)))
+					(parse_info(str, &i), new->rgb)))
 				return (terminate(data, NULL, 0));
 	if (type > 3)
 		return (terminate(data, "Error\nInvalid params to plane", 0));
@@ -93,8 +93,7 @@ int	parse_sp(char *str, t_data *data, int type, t_sphere *new)
 		if (str[i] != ' ' && str[i] != '\t' && ++type)
 			if ((type == 1 && parse_farray(parse_info(str, &i), new->coord, 0))
 				|| (type == 2 && stof(parse_info(str, &i), &new->diameter, 1))
-				|| (type == 3 && parse_color(parse_info(str, &i),
-						new->rgb, &new->color)))
+				|| (type == 3 && parse_color(parse_info(str, &i), new->rgb)))
 				return (terminate(data, NULL, 0));
 	if (type > 3 || new->diameter <= 0)
 		return (terminate(data, "Error\nInvalid params to sphere", 0));
@@ -122,8 +121,7 @@ int	parse_light(char *str, t_data *data, int type, t_light *new)
 		if (str[i] != ' ' && str[i] != '\t' && ++type)
 			if ((type == 1 && parse_farray(parse_info(str, &i), new->coord, 0))
 				|| (type == 2 && stof(parse_info(str, &i), &new->ratio, 1))
-				|| (type == 3 && parse_color(parse_info(str, &i),
-						new->rgb, &new->color)))
+				|| (type == 3 && parse_color(parse_info(str, &i), new->rgb)))
 				return (terminate(data, NULL, 0));
 	if (type > 3 || new->ratio < 0 || new->ratio > 1.0)
 		return (terminate(data, "Error\nInvalid params to light", 0));

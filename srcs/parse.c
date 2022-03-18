@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 20:46:45 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:14 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/17 20:46:08 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ int	parse_ambient_light(char *tr, t_data *data)
 		return (1);
 	while (tr[i] == ' ' || tr[i] == '\t')
 		i++;
-	if (parse_color(parse_info(tr, &i), data->ambient.rgb,
-			&data->ambient.color))
+	if (parse_color(parse_info(tr, &i), data->ambient.rgb))
 		return (1);
 	while (tr[i] == ' ' || tr[i] == '\t')
 		i++;
