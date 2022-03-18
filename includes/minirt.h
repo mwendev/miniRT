@@ -180,7 +180,7 @@ void	select_shape(char shape, t_data *data);
 int		create_trgb(int t, int r, int g, int b);
 void	put_menu(t_data *data);
 void	mix_light(t_data *data, int *rgb, float angle, float tr);
-void	mix_ambient(t_data *data, int *rgb, t_sphere *current, float tr);
+void	mix_ambient(t_data *data, int *rgb, int *obj_rgb, float tr);
 int		check_nearest_point(t_data *data, float t, int i);
 float	intersection_sphere(float *ray, float *origin, t_sphere *sphere);
 void	handle_spheres(float *ray, t_data *data);

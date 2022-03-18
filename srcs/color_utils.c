@@ -17,15 +17,15 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	mix_ambient(t_data *data, int *rgb, t_sphere *current, float tr)
+void	mix_ambient(t_data *data, int *rgb, int *obj_rgb, float tr)
 {
-	data->curr_col_rgb[0] = (int)((float)rgb[0] * tr * current->rgb[0] / 255);
+	data->curr_col_rgb[0] = (int)((float)rgb[0] * tr * (float)obj_rgb[0] / 255);
 	if (data->curr_col_rgb[0] > 255)
 		data->curr_col_rgb[0] = 255;
-	data->curr_col_rgb[1] = (int)((float)rgb[1] * tr * current->rgb[1] / 255);
+	data->curr_col_rgb[1] = (int)((float)rgb[1] * tr * (float)obj_rgb[1] / 255);
 	if (data->curr_col_rgb[1] > 255)
 		data->curr_col_rgb[1] = 255;
-	data->curr_col_rgb[2] = (int)((float)rgb[2] * tr * current->rgb[2] / 255);
+	data->curr_col_rgb[2] = (int)((float)rgb[2] * tr * (float)obj_rgb[2] / 255);
 	if (data->curr_col_rgb[2] > 255)
 		data->curr_col_rgb[2] = 255;
 }

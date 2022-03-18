@@ -58,7 +58,7 @@ void	handle_spheres(float *ray, t_data *data)
 			if (check_nearest_point(data, t, i))
 			{
 				data->obj_counter.shape = 's';
-				mix_ambient(data, data->ambient.rgb, current,
+				mix_ambient(data, data->ambient.rgb, current->rgb,
 							data->ambient.ratio);
 			}
 		}
