@@ -32,7 +32,10 @@ set(SOURCE_FILES
         srcs/put_pixel.c
         srcs/select.c
         srcs/color_utils.c
-        srcs/sphere_utils.c srcs/plane_utils.c)
+        srcs/sphere_utils.c
+        srcs/plane_utils.c
+        srcs/translate.c
+        )
 
 include_directories(includes)
 

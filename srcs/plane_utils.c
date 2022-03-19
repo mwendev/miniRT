@@ -28,16 +28,16 @@ float	*normalize_plane(t_plane *plane, float *par)
 	return (par);
 }
 
-float	intersection_plane(float *ray, float *origin, t_plane *plane)
+float	intersection_plane(t_data *data, float *ray, float *a, float v0)
 {
-	float	*a;
 	float	t;
+	float	vd;
 
-	a = malloc(sizeof(float) * 4);
-	a = normalize_plane(plane, a);
-	t = - (a[0] * origin[0] + a[1] * origin[1] + a[2] * origin[2] + a[3])
-			/ (a[0] * ray[0] + a[1] * ray[1] + a[2] * ray[2]);
-	free(a);
+	data->plane_norm_koeff = 1;
+	vd = (a[0] * ray[0] + a[1] * ray[1] + a[2] * ray[2]);
+	if (vd > 0)
+		data->plane_norm_koeff = -1;
+	t = v0 / vd;
 	if (t <= 0)
 		return (0);
 	else
@@ -49,12 +49,17 @@ void	handle_planes(float *ray, t_data *data)
 	float	t;
 	t_plane	*current;
 	int		i;
+	float	*a;
+	float	v0;
 
 	i = 0;
+	a = malloc(sizeof(float) * 4);
 	current = data->planes;
 	while (current != NULL)
 	{
-		t = intersection_plane(ray, data->camera.coord, current);
+		a = normalize_plane(current, a);
+		v0 = - (a[0] * data->camera.coord[0] + a[1] * data->camera.coord[1] + a[2] * data->camera.coord[2] + a[3]);
+		t = intersection_plane(data, ray, a, v0);
 		if (t > 0)
 		{
 			if (check_nearest_point(data, t, i))
@@ -67,4 +72,5 @@ void	handle_planes(float *ray, t_data *data)
 		current = current->next;
 		i++;
 	}
+	free(a);
 }

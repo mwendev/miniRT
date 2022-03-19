@@ -15,6 +15,7 @@
 
 # define WIDTH					800
 # define HEIGHT					600
+# define PI						3.1415926535897932384626433
 
 # include <math.h>
 // # include "../minilibx_opengl/mlx.h"
@@ -139,6 +140,7 @@ typedef struct s_data
 	char		inter_shape; // s - sphere, p - plane, c - cylinder, n - cone
 	float		light_dist;
 	t_selected	obj_counter;
+	int			plane_norm_koeff;
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;
@@ -179,5 +181,7 @@ void	handle_spheres(float *ray, t_data *data);
 void	handle_planes(float *ray, t_data *data);
 int		rewind_link(t_data *data);
 void	translate(int key, t_data *data);
+float	intersection_plane(t_data *data, float *ray, float *a, float v0);
+float	*normalize_plane(t_plane *plane, float *par);
 
 #endif
