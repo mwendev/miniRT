@@ -81,19 +81,19 @@ int	check_light(t_data *data, float *point)
 	ray = malloc(sizeof(float) * 3);
 	ray = vector_two_points(point, data->lights->coord, ray);
 	normalize_vector(ray);
-//	if (data->obj_counter.shape == 's')
-//	{
 	current_sp = data->spheres;
 	while (current_sp != NULL)
 	{
 		t = intersection_sphere(ray, data->cross_p, current_sp);
 		if (t > 0)
-			break;
+		{
+			if (t > data->nearest_point)
+				t = 0;
+			else
+				break ;
+		}
 		current_sp = current_sp->next;
 	}
-//	}
-//	else if (data->obj_counter.shape == 'p')
-//	{
 	if (t < 0.000001)
 	{
 		current_pl = data->planes;
@@ -113,7 +113,6 @@ int	check_light(t_data *data, float *point)
 			current_pl = current_pl->next;
 		}
 	}
-//	}
 	free(a);
 	free(ray);
 	if (t > 0)
@@ -125,6 +124,7 @@ void	find_intersection(float *ray_v, t_data *data)
 {
 	handle_spheres(ray_v, data);
 	handle_planes(ray_v, data);
+//	handle_cylinders(ray_v, data);
 }
 
 int	get_color(t_data *data, float *ray_v, int *i)

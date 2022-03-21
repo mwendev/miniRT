@@ -35,6 +35,7 @@ set(SOURCE_FILES
         srcs/sphere_utils.c
         srcs/plane_utils.c
         srcs/translate.c
+        srcs/cylinder_utils.c
         )
 
 include_directories(includes)

@@ -183,5 +183,6 @@ int		rewind_link(t_data *data);
 void	translate(int key, t_data *data);
 float	intersection_plane(t_data *data, float *ray, float *a, float v0);
 float	*normalize_plane(t_plane *plane, float *par);
+void	handle_cylinders(float *ray, t_data *data);
 
 #endif
