@@ -67,3 +67,14 @@ void	handle_spheres(float *ray, t_data *data)
 	}
 }
 
+float	*normal_vector_sp(t_sphere *current, float *intersect)
+{
+	float	*res;
+
+	res = malloc(sizeof(float) * 3);
+	res = vector_two_points(current->coord, intersect, res);
+	normalize_vector(res);
+	return (res);
+}
+
+

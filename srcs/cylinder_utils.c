@@ -13,7 +13,55 @@
 #include "minirt.h"
 
 float	intersection_cylinder(float *ray, float *origin, t_cylinder *cylinder)
-{}
+{
+	float	*w;
+	float	*h;
+	float	a;
+	float	b;
+	float	c;
+	float	d;
+	float	t;
+	float	*na;
+
+	h = malloc(sizeof(float) * 3);
+	h[0] = cylinder->orient[0];
+	h[1] = cylinder->orient[1];
+	h[2] = cylinder->orient[2];
+	normalize_vector(h);
+	w = malloc(sizeof(float) * 3);
+	w = vector_two_points(origin, cylinder->coord, w);
+	normalize_vector(w);
+	na = malloc(sizeof(float) * 3);
+	cross_product(ray, h, na);
+	a = 1 - powf(dot_prod(ray, h), 2);
+	b = 2 * (dot_prod(ray, w) - dot_prod(ray, h) * dot_prod(w, h));
+	c = 1 - powf(dot_prod(w, h), 2) - powf((cylinder->diameter)/2, 2);
+	free(w);
+	free(h);
+	d = powf(b, 2) - 4 * a * c;
+	if (d < 0)
+		return (0);
+	else
+	{
+		if (d == 0)
+			return (-b/(2 * a));
+		else
+		{
+			t = (-b - d)/(2 * a);
+			if (t > 0)
+				return (t);
+			else
+			{
+				t = (-b + d)/(2 * a);
+				if (t > 0)
+					return (t);
+				else
+					return (0);
+			}
+		}
+	}
+
+}
 
 void	handle_cylinders(float *ray, t_data *data)
 {
@@ -30,7 +78,7 @@ void	handle_cylinders(float *ray, t_data *data)
 		{
 			if (check_nearest_point(data, t, i))
 			{
-				data->obj_counter.shape = 's';
+				data->obj_counter.shape = 'y';
 				mix_ambient(data, data->ambient.rgb, current->rgb,
 							data->ambient.ratio);
 			}
@@ -38,4 +86,22 @@ void	handle_cylinders(float *ray, t_data *data)
 		current = current->next;
 		i++;
 	}
+}
+
+
+float	*normal_vector_cyl(t_cylinder *current, float *intersect)
+{
+	float	*w;
+	float	*res;
+	float	*interm;
+
+	w = malloc(sizeof(float) * 3);
+	res = malloc(sizeof(float) * 3);
+	w = vector_two_points(intersect, current->coord, w);
+	interm = malloc(sizeof(float) * 3);
+	cross_product(current->orient, w, interm);
+	cross_product(current->orient, interm, res);
+	free(w);
+	free(interm);
+	return (res);
 }

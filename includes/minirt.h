@@ -15,7 +15,7 @@
 
 # define WIDTH					800
 # define HEIGHT					600
-# define PI						3.1415926535897932384626433
+//# define PI						3.1415926535897932384626433
 
 # include <math.h>
 // # include "../minilibx_opengl/mlx.h"
@@ -184,5 +184,8 @@ void	translate(int key, t_data *data);
 float	intersection_plane(t_data *data, float *ray, float *a, float v0);
 float	*normalize_plane(t_plane *plane, float *par);
 void	handle_cylinders(float *ray, t_data *data);
+float	dot_prod(float *vect1, float *vect2);
+float	*normal_vector_sp(t_sphere *current, float *intersect);
+float	*normal_vector_cyl(t_cylinder *current, float *intersect);
 
 #endif
