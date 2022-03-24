@@ -187,5 +187,6 @@ void	handle_cylinders(float *ray, t_data *data);
 float	dot_prod(float *vect1, float *vect2);
 float	*normal_vector_sp(t_sphere *current, float *intersect);
 float	*normal_vector_cyl(t_cylinder *current, float *intersect);
+float	intersection_cylinder(float *ray, float *origin, t_cylinder *cylinder);
 
 #endif

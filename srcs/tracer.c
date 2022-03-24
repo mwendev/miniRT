@@ -57,12 +57,14 @@ int	check_nearest_point(t_data *data, float t, int i)
 	}
 	return (0);
 }
+
 int	check_light(t_data *data, float *point)
 {
 	float		t;
 	float		*ray;
 	t_sphere	*current_sp;
 	t_plane		*current_pl;
+	t_cylinder 	*current_cyl;
 	float		*a;
 	float		v0;
 
@@ -83,7 +85,7 @@ int	check_light(t_data *data, float *point)
 		}
 		current_sp = current_sp->next;
 	}
-	if (t < 0.000001)
+	if (t == 0)
 	{
 		current_pl = data->planes;
 		while (current_pl != NULL)
@@ -100,6 +102,22 @@ int	check_light(t_data *data, float *point)
 					break ;
 			}
 			current_pl = current_pl->next;
+		}
+	}
+	if (t == 0)
+	{
+		current_cyl = data->cylinders;
+		while (current_cyl != NULL)
+		{
+			t = intersection_cylinder(ray, data->cross_p, current_cyl);
+			if (t > 0)
+			{
+				if (t > data->nearest_point)
+					t = 0;
+				else
+					break ;
+			}
+			current_cyl = current_cyl->next;
 		}
 	}
 	free(a);
@@ -122,7 +140,7 @@ int	get_color(t_data *data, float *ray_v, int *i)
 	float		*cross_to_light;
 	t_sphere	*current_sp;
 	t_plane		*current_pl;
-	t_cylinder 	*current_cyl;
+	t_cylinder	*current_cyl;
 	int			j;
 
 	data->curr_col_rgb[0] = 0;
@@ -152,7 +170,7 @@ int	get_color(t_data *data, float *ray_v, int *i)
 		}
 		else if (data->obj_counter.shape == 'y')
 		{
-			norm_obj = malloc(sizeof(float) * 3);
+//			norm_obj = malloc(sizeof(float) * 3);
 			current_cyl = data->cylinders;
 			while (++j < data->obj_counter.number)
 				current_cyl = current_cyl->next;
@@ -161,8 +179,8 @@ int	get_color(t_data *data, float *ray_v, int *i)
 		cross_to_light = malloc(sizeof (float) * 3);
 		cross_to_light = vector_two_points(data->cross_p, data->lights->coord, cross_to_light);
 		normalize_vector(cross_to_light);
-		if (data->obj_counter.shape != 'y')
-			mix_light(data, data->lights->rgb, angle_vect(norm_obj, cross_to_light), data->lights->ratio);
+//		if (data->obj_counter.shape != 'y')
+		mix_light(data, data->lights->rgb, angle_vect(norm_obj, cross_to_light), data->lights->ratio);
 		free(cross_to_light);
 		free(norm_obj);
 	}
@@ -186,7 +204,7 @@ void	fill_image(t_data *data)
 		i[1] = -1;
 		while (++i[1] < WIDTH)
 		{
-			printf("%d %d\n", i[0], i[1]);
+//			printf("%d %d", i[0], i[1]);
 			data->intersection = '0';
 			ray_v = malloc(sizeof(float) * 3);
 			ray_v = calculate_ray_vector(pixel_size, i, data, ray_v);
