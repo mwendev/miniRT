@@ -66,7 +66,7 @@ float	check_cyl_diff(t_data *data, float t, float *ray)
 	current_cyl = data->cylinders;
 	while (current_cyl != NULL)
 	{
-		t = intersection_cylinder(ray, data->cross_p, current_cyl);
+		t = intersection_cylinder_body(ray, data->cross_p, current_cyl);
 		if (t > 0)
 		{
 			if (t > data->nearest_point)
@@ -88,7 +88,7 @@ int	check_diffuse_light(t_data *data, float *point)
 	ray = vector_two_points(point, data->lights->coord, ray);
 	normalize_vector(ray);
 	t = check_sp_diff(data, t, ray);
-	if (t == 0)
+	if (t < 0)
 		t = check_pl_diff(data, t, ray, point);
 	if (t == 0)
 		t = check_cyl_diff(data, t, ray);

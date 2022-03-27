@@ -17,7 +17,7 @@ void	operate(char operation, int axis, t_data *data)
 	if (operation == '-')
 	{
 		if (data->selected.shape == 'l')
-			data->lights->coord[axis] -= 80;
+			data->lights->coord[axis]--;
 		else if (data->selected.shape == 's')
 			data->spheres->coord[axis]--;
 		else if (data->selected.shape == 'y')
@@ -30,7 +30,7 @@ void	operate(char operation, int axis, t_data *data)
 	if (operation == '+')
 	{
 		if (data->selected.shape == 'l')
-			data->lights->coord[axis] += 80;
+			data->lights->coord[axis]++;
 		else if (data->selected.shape == 's')
 			data->spheres->coord[axis]++;
 		else if (data->selected.shape == 'y')
@@ -78,5 +78,5 @@ void	translate(int key, t_data *data)
 	else if (key == MAC_2 || key == XK_2)
 		distribute('+', 2, data);
 	else if (key == MAC_W || key == XK_w)
-		distribute('+', 2, data);
+		distribute('-', 2, data);
 }

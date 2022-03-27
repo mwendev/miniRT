@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-void	calc_coeff(float *ray, float *origin, t_sphere *sphere, float *b)
+void	calc_coeff_sp(float *ray, float *origin, t_sphere *sphere, float *b)
 {
 	b[0] = 2 * (ray[0] * (origin[0] - sphere->coord[0])
 			+ ray[1] * (origin[1] - sphere->coord[1])
@@ -30,7 +30,7 @@ float	intersection_sphere(float *ray, float *origin, t_sphere *sphere)
 	float	t;
 
 	b = malloc(sizeof(float) * 3);
-	calc_coeff(ray, origin, sphere, b);
+	calc_coeff_sp(ray, origin, sphere, b);
 	if (b[2] > 0)
 	{
 		t = (-b[0] - sqrtf(b[2])) / 2;
