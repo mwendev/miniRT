@@ -68,13 +68,10 @@ void	find_intersection(float *ray_v, t_data *data)
 void	fill_image(t_data *data)
 {
 	int		i[2];
-	float	pixel_size;
 	float	*ray_v;
 
 	i[0] = -1;
 	camera_up_right(data);
-	pixel_size = (float)(tan(data->camera.fov * M_PI / 2 / 180)
-			/ (float)(WIDTH / 2));
 	while (++i[0] < HEIGHT)
 	{
 		i[1] = -1;
@@ -85,7 +82,7 @@ void	fill_image(t_data *data)
 			data->curr_col_rgb[2] = 0;
 			data->intersection = '0';
 			ray_v = malloc(sizeof(float) * 3);
-			ray_v = calculate_ray_vector(pixel_size, i, data, ray_v);
+			ray_v = calculate_ray_vector(data->pixel_size, i, data, ray_v);
 			normalize_vector(ray_v);
 			find_intersection(ray_v, data);
 			intersection_coords(ray_v, data, data->nearest_point - 0.0002);

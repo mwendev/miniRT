@@ -53,7 +53,7 @@ void	camera_up_right(t_data *data)
 	interm_vect = malloc(sizeof(float) * 3);
 	angle_axes = malloc(sizeof(double) * 3);
 	cross_product(data->camera.orient,
-			vect_axes[axis_up(angle_axes, data, vect_axes)], interm_vect);
+		vect_axes[axis_up(angle_axes, data, vect_axes)], interm_vect);
 	cross_product(interm_vect, data->camera.orient, data->camera.up);
 	free(interm_vect);
 	cross_product(data->camera.orient, data->camera.up, data->camera.right);

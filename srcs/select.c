@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-int		select_number(int selected, t_data *data)
+int	select_number(int selected, t_data *data)
 {
 	int	i;
 	int	ret;

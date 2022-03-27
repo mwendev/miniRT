@@ -14,7 +14,7 @@
 
 void	free_cylinder(t_data *data)
 {
-	t_cylinder *tmp;
+	t_cylinder	*tmp;
 
 	if (!data->cylinders)
 		return ;
@@ -32,7 +32,7 @@ void	free_cylinder(t_data *data)
 
 void	free_plane(t_data *data)
 {
-	t_plane *tmp;
+	t_plane	*tmp;
 
 	if (!data->planes)
 		return ;
@@ -50,7 +50,7 @@ void	free_plane(t_data *data)
 
 void	free_spheres(t_data *data)
 {
-	t_sphere *tmp;
+	t_sphere	*tmp;
 
 	if (!data->spheres)
 		return ;
@@ -68,7 +68,7 @@ void	free_spheres(t_data *data)
 
 void	free_light(t_data *data)
 {
-	t_light *tmp;
+	t_light	*tmp;
 
 	if (!data->lights)
 		return ;

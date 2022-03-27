@@ -31,7 +31,8 @@ float	intersection_cylinder(float *ray, float *origin, t_cylinder *cylinder)
 	w = vector_two_points(cylinder->coord, origin, w);
 	a = 1 - powf(dot_prod(ray, h), 2);
 	b = 2 * (dot_prod(ray, w) - dot_prod(ray, h) * dot_prod(w, h));
-	c = dot_prod(w, w) - powf(dot_prod(w, h), 2) - powf((cylinder->diameter)/2, 2);
+	c = dot_prod(w, w) - powf(dot_prod(w, h), 2)
+		- powf((cylinder->diameter) / 2, 2);
 	free(w);
 	free(h);
 	d = powf(b, 2) - 4 * a * c;
@@ -40,30 +41,19 @@ float	intersection_cylinder(float *ray, float *origin, t_cylinder *cylinder)
 	else
 	{
 		if (d == 0)
-			return (-b/(2 * a));
+			return (-b / (2 * a));
 		else
 		{
-			t = (-b - sqrtf(d))/(2 * a);
-//			if (t > 0)
-//				return (t);
-//			else
-//			{
-//				t = (-b + sqrtf(d))/(2 * a);
-//				if (t > 0)
-//					return (t);
-//				else
-//					return (0);
+			t = (-b - sqrtf(d)) / (2 * a);
 			if (t < 0)
 			{
-				t = (-b + sqrtf(d))/(2 * a);
+				t = (-b + sqrtf(d)) / (2 * a);
 				if (t < 0)
 					return (0);
 			}
-
 		}
 	}
 	return (t);
-
 }
 
 void	handle_cylinders(float *ray, t_data *data)
@@ -83,14 +73,13 @@ void	handle_cylinders(float *ray, t_data *data)
 			{
 				data->obj_counter.shape = 'y';
 				mix_ambient(data, data->ambient.rgb, current->rgb,
-							data->ambient.ratio);
+					data->ambient.ratio);
 			}
 		}
 		current = current->next;
 		i++;
 	}
 }
-
 
 float	*normal_vector_cyl(t_cylinder *current, float *intersect)
 {

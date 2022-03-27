@@ -67,7 +67,7 @@ void	distribute(char operation, int axis, t_data *data)
 
 void	translate(int key, t_data *data)
 {
-	if (key == MAC_1 || key == XK_1 )
+	if (key == MAC_1 || key == XK_1)
 		distribute('-', 0, data);
 	else if (key == MAC_E || key == XK_e)
 		distribute('+', 0, data);

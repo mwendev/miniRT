@@ -19,7 +19,8 @@ float	*normalize_plane(t_plane *plane, float *par)
 	par[0] = plane->orient[0];
 	par[1] = plane->orient[1];
 	par[2] = plane->orient[2];
-	par[3] = -1 * (par[0] * plane->coord[0] + par[1] * plane->coord[1] + par[2] * plane->coord[2]);
+	par[3] = -1 * (par[0] * plane->coord[0] + par[1] * plane->coord[1]
+			+ par[2] * plane->coord[2]);
 	len = sqrtf(powf(par[0], 2) + powf(par[1], 2) + powf(par[2], 2));
 	par[0] = par[0] / len;
 	par[1] = par[1] / len;
@@ -44,6 +45,16 @@ float	intersection_plane(t_data *data, float *ray, float *a, float v0)
 		return (t);
 }
 
+void	check_and_mix_ambient(t_data *data, float t, int i, t_plane *current)
+{
+	if (check_nearest_point(data, t, i))
+	{
+		data->obj_counter.shape = 'p';
+		mix_ambient(data, data->ambient.rgb, current->rgb,
+					data->ambient.ratio);
+	}
+}
+
 void	handle_planes(float *ray, t_data *data)
 {
 	float	t;
@@ -58,17 +69,11 @@ void	handle_planes(float *ray, t_data *data)
 	while (current != NULL)
 	{
 		a = normalize_plane(current, a);
-		v0 = - (a[0] * data->camera.coord[0] + a[1] * data->camera.coord[1] + a[2] * data->camera.coord[2] + a[3]);
+		v0 = - (a[0] * data->camera.coord[0] + a[1] * data->camera.coord[1]
+				+ a[2] * data->camera.coord[2] + a[3]);
 		t = intersection_plane(data, ray, a, v0);
 		if (t > 0)
-		{
-			if (check_nearest_point(data, t, i))
-			{
-				data->obj_counter.shape = 'p';
-				mix_ambient(data, data->ambient.rgb, current->rgb,
-							data->ambient.ratio);
-			}
-		}
+			check_and_mix_ambient(data, t, i, current);
 		current = current->next;
 		i++;
 	}

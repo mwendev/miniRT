@@ -54,11 +54,11 @@ void	init_window(t_data *data)
 	if (!data->img)
 		terminate(data, "Init image failed", 1);
 	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
-		&data->line_len, &data->endian);
+			&data->line_len, &data->endian);
 	put_menu(data);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
@@ -66,6 +66,8 @@ int main(int argc, char **argv)
 		terminate(NULL, "Invalid input", 1);
 	init_data(&data);
 	parse(argv[1], &data);
+	data.pixel_size = (float)(tan(data.camera.fov * M_PI / 2 / 180)
+			/ (float)(WIDTH / 2));
 	init_window(&data);
 	fill_image(&data);
 	set_listener(&data);
