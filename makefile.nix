@@ -8,8 +8,8 @@ W = -Wall -Werror -Wextra
 OBJ = obj/main.o obj/get_next_line.o obj/get_next_line_utils.o obj/parse.o \
 obj/parse_utils.o obj/terminate.o obj/tracer.o obj/parse_shapes.o obj/listen.o \
 obj/vector_utils.o obj/tracer_camera.o obj/put_pixel.o obj/color_utils.o \
-obj/sphere_utils.o obj/cylinder_utils.o obj/translate.o obj/select.o \
-obj/plane_utils.o
+obj/plane_utils.o obj/sphere_utils.o obj/cylinder_utils.o obj/translate.o \
+obj/select.o obj/diffuse_light_check.o obj/diffuse_light_handle.o
 
 $(NAME): $(OBJ) libft/libft.a
 	gcc $(OBJ) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT
@@ -67,6 +67,12 @@ obj/translate.o: srcs/translate.c
 
 obj/select.o: srcs/select.c
 	gcc -c -g srcs/select.c -I ./includes -o obj/select.o
+
+obj/diffuse_light_check.o: srcs/diffuse_light_check.c
+	gcc -c -g srcs/diffuse_light_check.c -I ./includes -o obj/diffuse_light_check.o
+
+obj/diffuse_light_handle.o: srcs/diffuse_light_handle.c
+	gcc -c -g srcs/diffuse_light_handle.c -I ./includes -o obj/diffuse_light_handle.o
 
 libft/libft.a:
 	$(MAKE) -C libft

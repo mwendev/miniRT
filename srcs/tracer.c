@@ -58,135 +58,11 @@ int	check_nearest_point(t_data *data, float t, int i)
 	return (0);
 }
 
-int	check_light(t_data *data, float *point)
-{
-	float		t;
-	float		*ray;
-	t_sphere	*current_sp;
-	t_plane		*current_pl;
-	t_cylinder 	*current_cyl;
-	float		*a;
-	float		v0;
-
-	a = malloc(sizeof(float) * 4);
-	ray = malloc(sizeof(float) * 3);
-	ray = vector_two_points(point, data->lights->coord, ray);
-	normalize_vector(ray);
-	current_sp = data->spheres;
-	while (current_sp != NULL)
-	{
-		t = intersection_sphere(ray, data->cross_p, current_sp);
-		if (t > 0)
-		{
-			if (t > data->nearest_point)
-				t = 0;
-			else
-				break ;
-		}
-		current_sp = current_sp->next;
-	}
-	if (t == 0)
-	{
-		current_pl = data->planes;
-		while (current_pl != NULL)
-		{
-			a = normalize_plane(current_pl, a);
-			v0 = -(a[0] * point[0] + a[1] * point[1] +
-					a[2] * point[2] + a[3]);
-			t = intersection_plane(data, ray, a, v0);
-			if (t > 0)
-			{
-				if (t > data->nearest_point)
-					t = 0;
-				else
-					break ;
-			}
-			current_pl = current_pl->next;
-		}
-	}
-	if (t == 0)
-	{
-		current_cyl = data->cylinders;
-		while (current_cyl != NULL)
-		{
-			t = intersection_cylinder(ray, data->cross_p, current_cyl);
-			if (t > 0)
-			{
-				if (t > data->nearest_point)
-					t = 0;
-				else
-					break ;
-			}
-			current_cyl = current_cyl->next;
-		}
-	}
-	free(a);
-	free(ray);
-	if (t > 0)
-		return (0);
-	return (1);
-}
-
 void	find_intersection(float *ray_v, t_data *data)
 {
 	handle_spheres(ray_v, data);
 	handle_planes(ray_v, data);
 	handle_cylinders(ray_v, data);
-}
-
-int	get_color(t_data *data, float *ray_v, int *i)
-{
-	float		*norm_obj;
-	float		*cross_to_light;
-	t_sphere	*current_sp;
-	t_plane		*current_pl;
-	t_cylinder	*current_cyl;
-	int			j;
-
-	data->curr_col_rgb[0] = 0;
-	data->curr_col_rgb[1] = 0;
-	data->curr_col_rgb[2] = 0;
-	find_intersection(ray_v, data);
-	intersection_coords(ray_v, data, data->nearest_point - 0.0002);
-	if (data->intersection == '1' && check_light(data, data->cross_p))
-	{
-		j = -1;
-		if (data->obj_counter.shape == 's')
-		{
-			current_sp = data->spheres;
-			while (++j < data->obj_counter.number)
-				current_sp = current_sp->next;
-			norm_obj = normal_vector_sp(current_sp, data->cross_p);
-		}
-		else if (data->obj_counter.shape == 'p')
-		{
-			norm_obj = malloc(sizeof(float) * 3);
-			current_pl = data->planes;
-			while (++j < data->obj_counter.number)
-				current_pl = current_pl->next;
-			norm_obj[0] = current_pl->orient[0] * data->plane_norm_koeff;
-			norm_obj[1] = current_pl->orient[1] * data->plane_norm_koeff;
-			norm_obj[2] = current_pl->orient[2] * data->plane_norm_koeff;
-		}
-		else if (data->obj_counter.shape == 'y')
-		{
-//			norm_obj = malloc(sizeof(float) * 3);
-			current_cyl = data->cylinders;
-			while (++j < data->obj_counter.number)
-				current_cyl = current_cyl->next;
-			norm_obj = normal_vector_cyl(current_cyl, data->cross_p);
-		}
-		cross_to_light = malloc(sizeof (float) * 3);
-		cross_to_light = vector_two_points(data->cross_p, data->lights->coord, cross_to_light);
-		normalize_vector(cross_to_light);
-//		if (data->obj_counter.shape != 'y')
-		mix_light(data, data->lights->rgb, angle_vect(norm_obj, cross_to_light), data->lights->ratio);
-		free(cross_to_light);
-		free(norm_obj);
-	}
-	data->curr_col = create_trgb(
-			0, data->curr_col_rgb[0], data->curr_col_rgb[1], data->curr_col_rgb[2]);
-	return (data->curr_col);
 }
 
 void	fill_image(t_data *data)
@@ -204,12 +80,16 @@ void	fill_image(t_data *data)
 		i[1] = -1;
 		while (++i[1] < WIDTH)
 		{
-//			printf("%d %d", i[0], i[1]);
+			data->curr_col_rgb[0] = 0;
+			data->curr_col_rgb[1] = 0;
+			data->curr_col_rgb[2] = 0;
 			data->intersection = '0';
 			ray_v = malloc(sizeof(float) * 3);
 			ray_v = calculate_ray_vector(pixel_size, i, data, ray_v);
 			normalize_vector(ray_v);
-			get_color(data, ray_v, i);
+			find_intersection(ray_v, data);
+			intersection_coords(ray_v, data, data->nearest_point - 0.0002);
+			diffuse_light(data);
 			put_pixel(data, i);
 			free(ray_v);
 		}

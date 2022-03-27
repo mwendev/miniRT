@@ -36,6 +36,8 @@ set(SOURCE_FILES
         srcs/plane_utils.c
         srcs/translate.c
         srcs/cylinder_utils.c
+        srcs/diffuse_light_check.c
+        srcs/diffuse_light_handle.c
         )
 
 include_directories(includes)
