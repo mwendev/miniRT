@@ -54,12 +54,12 @@ float	intersection_cylinder_body(float *ray, float *origin,
 			if (t < 0)
 				return (free_return_float(a, 0));
 		}
-//		c[0] = ray[0] * t - cylinder->coord[0];
-//		c[1] = ray[1] * t - cylinder->coord[1];
-//		c[2] = ray[2] * t - cylinder->coord[2];
-//		b = dot_prod(cylinder->orient, c);
-//		if (b < 0 || b > cylinder->height)
-//			return (free_return_float(a, 0));
+		c[0] = ray[0] * t + origin[0] - cylinder->coord[0];
+		c[1] = ray[1] * t + origin[1] - cylinder->coord[1];
+		c[2] = ray[2] * t + origin[2] - cylinder->coord[2];
+		b = dot_prod(cylinder->orient, c);
+		if (b < 0 || b > cylinder->height)
+			return (free_return_float(a, 0));
 	}
 	return (free_return_float(a, t));
 }
