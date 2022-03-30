@@ -42,10 +42,11 @@ float	check_pl_diff(t_data *data, float t, float *ray, float *point)
 	current_pl = data->planes;
 	while (current_pl != NULL)
 	{
-		a = normalize_plane(current_pl, a);
+		a = normalize_plane(current_pl->orient, current_pl->coord, a);
 		v0 = -(a[0] * point[0] + a[1] * point[1]
 				+ a[2] * point[2] + a[3]);
-		t = intersection_plane(data, ray, a, v0);
+		t = intersection_plane(ray, a, v0);
+//		t = intersection_plane(data, ray, a, v0);
 		if (t > 0)
 		{
 			if (t > data->nearest_point)
@@ -67,6 +68,23 @@ float	check_cyl_diff(t_data *data, float t, float *ray)
 	while (current_cyl != NULL)
 	{
 		t = intersection_cylinder_body(ray, data->cross_p, current_cyl);
+		if (t > 0)
+		{
+			if (t < data->nearest_point)
+//			if (t > data->nearest_point)
+//				t = 0;
+//			else
+				break ;
+		}
+		t = intersection_cylinder_cap(ray, data->cross_p, current_cyl, 0);
+		if (t > 0)
+		{
+			if (t > data->nearest_point)
+				t = 0;
+			else
+				break ;
+		}
+		t = intersection_cylinder_cap(ray, data->cross_p, current_cyl, 1);
 		if (t > 0)
 		{
 			if (t > data->nearest_point)

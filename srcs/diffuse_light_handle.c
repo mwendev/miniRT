@@ -45,12 +45,22 @@ float	*handle_cyl_diff(t_data *data)
 {
 	int			j;
 	t_cylinder	*current_cyl;
+	float		*norm_obj;
 
 	j = -1;
 	current_cyl = data->cylinders;
 	while (++j < data->obj_counter.number)
 		current_cyl = current_cyl->next;
-	return (normal_vector_cyl(current_cyl, data->cross_p));
+	if (data->obj_counter.shape == 'y')
+		return (normal_vector_cyl_body(current_cyl, data->cross_p));
+	else
+	{
+		norm_obj = malloc(sizeof(float) * 3);
+		norm_obj[0] = current_cyl->orient[0];
+		norm_obj[1] = current_cyl->orient[1];
+		norm_obj[2] = current_cyl->orient[2];
+		return (norm_obj);
+	}
 }
 
 int	diffuse_light(t_data *data)
@@ -64,7 +74,9 @@ int	diffuse_light(t_data *data)
 			norm_obj = handle_sp_diff(data);
 		else if (data->obj_counter.shape == 'p')
 			norm_obj = handle_pl_diff(data);
-		else if (data->obj_counter.shape == 'y')
+		else if (data->obj_counter.shape == 'y'
+		|| data->obj_counter.shape == 'z'
+		|| data->obj_counter.shape == 'r')
 			norm_obj = handle_cyl_diff(data);
 		cross_to_light = malloc(sizeof (float) * 3);
 		cross_to_light = vector_two_points(data->cross_p, data->lights->coord,

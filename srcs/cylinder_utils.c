@@ -33,6 +33,60 @@ void	calc_coeff_cyl(t_cylinder *cylinder, float *a, float *origin, float *ray)
 	a[3] = powf(a[1], 2) - 4 * a[0] * a[2];
 }
 
+float	distance(float *center, float *origin, float *ray, float t)
+{
+	float	cross_p[3];
+	float	dist;
+
+	cross_p[0] = origin[0] + ray[0] * t;
+	cross_p[1] = origin[1] + ray[1] * t;
+	cross_p[2] = origin[2] + ray[2] * t;
+	dist = sqrtf(powf((center[0] - cross_p[0]), 2)
+	+ powf((center[1] - cross_p[1]), 2)
+	+ powf((center[2] - cross_p[2]), 2));
+	return (dist);
+}
+
+float	intersection_cylinder_cap(float *ray, float *origin,
+								t_cylinder *cylinder, float offset)
+{
+	float	*center;
+	float	angle;
+	float	*a;
+	float	v0;
+	float	t;
+
+	angle = dot_prod(ray, cylinder->orient);
+	if (angle == 0)
+		return (0);
+	center = malloc(sizeof(float) * 3);
+	if (offset == 0)
+	{
+		center[0] = cylinder->coord[0];
+		center[1] = cylinder->coord[1];
+		center[2] = cylinder->coord[2];
+	}
+	else
+	{
+		center[0] = cylinder->coord[0] + cylinder->orient[0] * cylinder->height;
+		center[1] = cylinder->coord[1] + cylinder->orient[1] * cylinder->height;
+		center[2] = cylinder->coord[2] + cylinder->orient[2] * cylinder->height;
+	}
+	a = malloc(sizeof(float) * 4);
+	a = normalize_plane(cylinder->orient, cylinder->coord, a);
+	v0 = - (a[0] * origin[0] + a[1] * origin[1]
+			+ a[2] * origin[2] + a[3]);
+	t = intersection_plane(ray, a, v0);
+	free(a);
+	if (distance(center, origin, ray, t) > (cylinder->diameter / 2))
+	{
+		free(center);
+		return (0);
+	}
+	free(center);
+	return (t);
+}
+
 float	intersection_cylinder_body(float *ray, float *origin,
 								t_cylinder *cylinder)
 {
@@ -84,12 +138,32 @@ void	handle_cylinders(float *ray, t_data *data)
 					data->ambient.ratio);
 			}
 		}
+		t = intersection_cylinder_cap(ray, data->camera.coord, current, 0);
+		if (t > 0)
+		{
+			if (check_nearest_point(data, t, i))
+			{
+				data->obj_counter.shape = 'z';
+				mix_ambient(data, data->ambient.rgb, current->rgb,
+							data->ambient.ratio);
+			}
+		}
+		t = intersection_cylinder_cap(ray, data->camera.coord, current, 1);
+		if (t > 0)
+		{
+			if (check_nearest_point(data, t, i))
+			{
+				data->obj_counter.shape = 'r';
+				mix_ambient(data, data->ambient.rgb, current->rgb,
+							data->ambient.ratio);
+			}
+		}
 		current = current->next;
 		i++;
 	}
 }
 
-float	*normal_vector_cyl(t_cylinder *current, float *intersect)
+float	*normal_vector_cyl_body(t_cylinder *current, float *intersect)
 {
 	float	*w;
 	float	*res;

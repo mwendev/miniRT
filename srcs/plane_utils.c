@@ -12,15 +12,15 @@
 
 #include "minirt.h"
 
-float	*normalize_plane(t_plane *plane, float *par)
+float	*normalize_plane(float *orient, float *coord, float *par)
 {
 	float	len;
 
-	par[0] = plane->orient[0];
-	par[1] = plane->orient[1];
-	par[2] = plane->orient[2];
-	par[3] = -1 * (par[0] * plane->coord[0] + par[1] * plane->coord[1]
-			+ par[2] * plane->coord[2]);
+	par[0] = orient[0];
+	par[1] = orient[1];
+	par[2] = orient[2];
+	par[3] = -1 * (par[0] * coord[0] + par[1] * coord[1]
+			+ par[2] * coord[2]);
 	len = sqrtf(powf(par[0], 2) + powf(par[1], 2) + powf(par[2], 2));
 	par[0] = par[0] / len;
 	par[1] = par[1] / len;
@@ -29,15 +29,16 @@ float	*normalize_plane(t_plane *plane, float *par)
 	return (par);
 }
 
-float	intersection_plane(t_data *data, float *ray, float *a, float v0)
+//float	intersection_plane(t_data *data, float *ray, float *a, float v0)
+float	intersection_plane(float *ray, float *a, float v0)
 {
 	float	t;
 	float	vd;
 
-	data->plane_norm_koeff = 1;
+//	data->plane_norm_koeff = 1;
 	vd = (a[0] * ray[0] + a[1] * ray[1] + a[2] * ray[2]);
-	if (vd > 0)
-		data->plane_norm_koeff = -1;
+//	if (vd > 0)
+//		data->plane_norm_koeff = -1;
 	t = v0 / vd;
 	if (t <= 0)
 		return (0);
@@ -68,10 +69,11 @@ void	handle_planes(float *ray, t_data *data)
 	current = data->planes;
 	while (current != NULL)
 	{
-		a = normalize_plane(current, a);
+		a = normalize_plane(current->orient, current->coord, a);
 		v0 = - (a[0] * data->camera.coord[0] + a[1] * data->camera.coord[1]
 				+ a[2] * data->camera.coord[2] + a[3]);
-		t = intersection_plane(data, ray, a, v0);
+		t = intersection_plane(ray, a, v0);
+//		t = intersection_plane(data, ray, a, v0);
 		if (t > 0)
 			check_and_mix_ambient(data, t, i, current);
 		current = current->next;
