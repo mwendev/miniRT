@@ -1,7 +1,9 @@
 NAME = miniRT
+NAME_BONUS = miniRT_bonus
 INCLUDES = minirt.h
 
 SRC_DIR := srcs/
+SRC_DIR_BONUS := srcs_bonus/
 
 W = -Wall -Werror -Wextra
 
@@ -12,8 +14,18 @@ obj/plane_utils.o obj/sphere_utils.o obj/cylinder_utils.o obj/translate.o \
 obj/select.o obj/diffuse_light_check.o obj/diffuse_light_handle.o \
 obj/mem_utils.o obj/cylinder_cap_utils.o
 
+OBJ_BONUS = obj/main_bonus.o obj/get_next_line_bonus.o obj/get_next_line_utils_bonus.o obj/parse_bonus.o \
+obj/parse_utils_bonus.o obj/terminate_bonus.o obj/tracer_bonus.o obj/parse_shapes_bonus.o obj/listen_bonus.o \
+obj/vector_utils_bonus.o obj/tracer_camera_bonus.o obj/put_pixel_bonus.o obj/color_utils_bonus.o \
+obj/plane_utils_bonus.o obj/sphere_utils_bonus.o obj/cylinder_utils_bonus.o obj/translate_bonus.o \
+obj/select_bonus.o obj/diffuse_light_check_bonus.o obj/diffuse_light_handle_bonus.o \
+obj/mem_utils_bonus.o obj/cylinder_cap_utils_bonus.o
+
 $(NAME): $(OBJ) libft/libft.a
 	gcc $(OBJ) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT
+
+$(NAME_BONUS): $(OBJ_BONUS) libft/libft.a
+	gcc $(OBJ_BONUS) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT_bonus
 
 obj/main.o: srcs/main.c
 	gcc -c -g $(W) srcs/main.c -I ./includes -o obj/main.o
@@ -80,6 +92,72 @@ obj/mem_utils.o: srcs/mem_utils.c
 
 obj/cylinder_cap_utils.o: srcs/cylinder_cap_utils.c
 	gcc -c -g srcs/cylinder_cap_utils.c -I ./includes -o obj/cylinder_cap_utils.o
+
+obj/main_bonus.o: srcs_bonus/main_bonus.c
+	gcc -c -g $(W) srcs_bonus/main_bonus.c -I ./includes -o obj/main_bonus.o
+
+obj/get_next_line_bonus.o: srcs_bonus/get_next_line_bonus.c
+	gcc -c -g $(W) srcs_bonus/get_next_line_bonus.c -I ./includes -o obj/get_next_line_bonus.o
+
+obj/get_next_line_utils_bonus.o: srcs_bonus/get_next_line_utils_bonus.c
+	gcc -c -g $(W) srcs_bonus/get_next_line_utils_bonus.c -I ./includes -o obj/get_next_line_utils_bonus.o
+
+obj/parse_bonus.o: srcs_bonus/parse_bonus.c
+	gcc -c -g $(W) srcs_bonus/parse_bonus.c -I ./includes -o obj/parse_bonus.o
+
+obj/parse_utils_bonus.o: srcs_bonus/parse_utils_bonus.c
+	gcc -c -g $(W) srcs_bonus/parse_utils_bonus.c -I ./includes -o obj/parse_utils_bonus.o
+
+obj/terminate_bonus.o: srcs_bonus/terminate_bonus.c
+	gcc -c -g $(W) srcs_bonus/terminate_bonus.c -I ./includes -o obj/terminate_bonus.o
+
+obj/tracer_bonus.o: srcs_bonus/tracer_bonus.c
+	gcc -c -g srcs_bonus/tracer_bonus.c -I ./includes -o obj/tracer_bonus.o
+
+obj/parse_shapes_bonus.o: srcs_bonus/parse_shapes_bonus.c
+	gcc -c -g $(W) srcs_bonus/parse_shapes_bonus.c -I ./includes -o obj/parse_shapes_bonus.o
+
+obj/listen_bonus.o: srcs_bonus/listen_bonus.c
+	gcc -c -g srcs_bonus/listen_bonus.c -I ./includes -o obj/listen_bonus.o
+
+obj/vector_utils_bonus.o: srcs_bonus/vector_utils_bonus.c
+	gcc -c -g $(W) srcs_bonus/vector_utils_bonus.c -I ./includes -o obj/vector_utils_bonus.o
+
+obj/tracer_camera_bonus.o: srcs_bonus/tracer_camera_bonus.c
+	gcc -c -g $(W) srcs_bonus/tracer_camera_bonus.c -I ./includes -o obj/tracer_camera_bonus.o
+
+obj/put_pixel_bonus.o: srcs_bonus/put_pixel_bonus.c
+	gcc -c -g $(W) srcs_bonus/put_pixel_bonus.c -I ./includes -o obj/put_pixel_bonus.o
+
+obj/color_utils_bonus.o: srcs_bonus/color_utils_bonus.c
+	gcc -c -g $(W) srcs_bonus/color_utils_bonus.c -I ./includes -o obj/color_utils_bonus.o
+
+obj/plane_utils_bonus.o: srcs_bonus/plane_utils_bonus.c
+	gcc -c -g $(W) srcs_bonus/plane_utils_bonus.c -I ./includes -o obj/plane_utils_bonus.o
+
+obj/sphere_utils_bonus.o: srcs_bonus/sphere_utils_bonus.c
+	gcc -c -g $(W) srcs_bonus/sphere_utils_bonus.c -I ./includes -o obj/sphere_utils_bonus.o
+
+obj/cylinder_utils_bonus.o: srcs_bonus/cylinder_utils_bonus.c
+	gcc -c -g srcs_bonus/cylinder_utils_bonus.c -I ./includes -o obj/cylinder_utils_bonus.o
+
+obj/translate_bonus.o: srcs_bonus/translate_bonus.c
+	gcc -c -g srcs_bonus/translate_bonus.c -I ./includes -o obj/translate_bonus.o
+
+obj/select_bonus.o: srcs_bonus/select_bonus.c
+	gcc -c -g srcs_bonus/select_bonus.c -I ./includes -o obj/select_bonus.o
+
+obj/diffuse_light_check_bonus.o: srcs_bonus/diffuse_light_check_bonus.c
+	gcc -c -g srcs_bonus/diffuse_light_check_bonus.c -I ./includes -o obj/diffuse_light_check_bonus.o
+
+obj/diffuse_light_handle_bonus.o: srcs_bonus/diffuse_light_handle_bonus.c
+	gcc -c -g srcs_bonus/diffuse_light_handle_bonus.c -I ./includes -o obj/diffuse_light_handle_bonus.o
+
+obj/mem_utils_bonus.o: srcs_bonus/mem_utils_bonus.c
+	gcc -c -g srcs_bonus/mem_utils_bonus.c -I ./includes -o obj/mem_utils_bonus.o
+
+obj/cylinder_cap_utils_bonus.o: srcs_bonus/cylinder_cap_utils_bonus.c
+	gcc -c -g srcs_bonus/cylinder_cap_utils_bonus.c -I ./includes -o obj/cylinder_cap_utils_bonus.o
 
 libft/libft.a:
 	$(MAKE) -C libft

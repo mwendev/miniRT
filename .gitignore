@@ -4,4 +4,5 @@ cmake-build-debug
 test_maps
 *.a
 miniRT
+miniRT_bonus
 obj

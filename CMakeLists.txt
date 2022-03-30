@@ -42,8 +42,35 @@ set(SOURCE_FILES
         srcs/cylinder_cap_utils.c
         )
 
+set(SOURCE_FILES_BONUS
+        srcs_bonus/main_bonus.c
+        srcs_bonus/get_next_line_bonus.c
+        srcs_bonus/get_next_line_utils_bonus.c
+        srcs_bonus/parse_bonus.c
+        srcs_bonus/parse_utils_bonus.c
+        srcs_bonus/terminate_bonus.c
+        srcs_bonus/tracer_bonus.c
+        srcs_bonus/listen_bonus.c
+        srcs_bonus/parse_shapes_bonus.c
+        srcs_bonus/vector_utils_bonus.c
+        srcs_bonus/tracer_camera_bonus.c
+        srcs_bonus/put_pixel_bonus.c
+        srcs_bonus/select_bonus.c
+        srcs_bonus/color_utils_bonus.c
+        srcs_bonus/sphere_utils_bonus.c
+        srcs_bonus/plane_utils_bonus.c
+        srcs_bonus/translate_bonus.c
+        srcs_bonus/cylinder_utils_bonus.c
+        srcs_bonus/diffuse_light_check_bonus.c
+        srcs_bonus/diffuse_light_handle_bonus.c
+        srcs_bonus/mem_utils_bonus.c
+        srcs_bonus/cylinder_cap_utils_bonus.c
+        )
+
 include_directories(includes)
 
 add_executable(miniRT ${SOURCE_FILES} ${LIBFT_FILES})
+add_executable(miniRT_bonus ${SOURCE_FILES_BONUS} ${LIBFT_FILES})
 
 target_link_libraries(miniRT mlx m z Xext X11)
+target_link_libraries(miniRT_bonus mlx m z Xext X11)
