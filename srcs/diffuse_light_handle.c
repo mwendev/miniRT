@@ -87,8 +87,7 @@ int	diffuse_light(t_data *data)
 		free(cross_to_light);
 		free(norm_obj);
 	}
-	data->curr_col = create_trgb(
-			0, data->curr_col_rgb[0], data->curr_col_rgb[1],
-			data->curr_col_rgb[2]);
+	data->curr_col = create_trgb(0, data->curr_col_rgb[0],
+			data->curr_col_rgb[1], data->curr_col_rgb[2]);
 	return (data->curr_col);
 }

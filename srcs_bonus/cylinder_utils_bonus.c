@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 void	calc_coeff_cyl(t_cylinder *cylinder, float *a, float *origin,
 					float *ray)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 float	*handle_sp_diff(t_data *data)
 {
@@ -63,29 +63,40 @@ float	*handle_cyl_diff(t_data *data)
 	}
 }
 
-int	diffuse_light(t_data *data)
+void	manage_light(t_data *data, t_light *light)
 {
 	float		*norm_obj;
 	float		*cross_to_light;
 	float		angle_v;
 
-	if (data->intersection == '1' && check_diffuse_light(data, data->cross_p))
+	if (data->obj_counter.shape == 's')
+		norm_obj = handle_sp_diff(data);
+	else if (data->obj_counter.shape == 'p')
+		norm_obj = handle_pl_diff(data);
+	else if (data->obj_counter.shape == 'y'
+		|| data->obj_counter.shape == 'z')
+		norm_obj = handle_cyl_diff(data);
+	cross_to_light = malloc(sizeof(float) * 3);
+	cross_to_light = vector_two_points(data->cross_p, light->coord,
+			cross_to_light);
+	normalize_vector(cross_to_light);
+	angle_v = angle_vect(norm_obj, cross_to_light);
+	mix_light(data, light->rgb, angle_v, light->ratio);
+	free(cross_to_light);
+	free(norm_obj);
+}
+
+int	diffuse_light(t_data *data)
+{
+	t_light		*light;
+
+	light = data->lights;
+	while (light != NULL)
 	{
-		if (data->obj_counter.shape == 's')
-			norm_obj = handle_sp_diff(data);
-		else if (data->obj_counter.shape == 'p')
-			norm_obj = handle_pl_diff(data);
-		else if (data->obj_counter.shape == 'y'
-			|| data->obj_counter.shape == 'z')
-			norm_obj = handle_cyl_diff(data);
-		cross_to_light = malloc(sizeof (float) * 3);
-		cross_to_light = vector_two_points(data->cross_p, data->lights->coord,
-				cross_to_light);
-		normalize_vector(cross_to_light);
-		angle_v = angle_vect(norm_obj, cross_to_light);
-		mix_light(data, data->lights->rgb, angle_v, data->lights->ratio);
-		free(cross_to_light);
-		free(norm_obj);
+		if (data->intersection == '1'
+			&& check_diffuse_light(data, data->cross_p, light))
+			manage_light(data, light);
+		light = light->next;
 	}
 	data->curr_col = create_trgb(
 			0, data->curr_col_rgb[0], data->curr_col_rgb[1],

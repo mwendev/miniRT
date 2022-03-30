@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 int	parse_cy(char *str, t_data *data, int type, t_cylinder *new)
 {

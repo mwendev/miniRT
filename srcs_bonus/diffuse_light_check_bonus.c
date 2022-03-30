@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 float	check_sp_diff(t_data *data, float t, float *ray)
 {
@@ -87,14 +87,14 @@ float	check_cyl_diff(t_data *data, float t, float *ray)
 	return (t);
 }
 
-int	check_diffuse_light(t_data *data, float *point)
+int	check_diffuse_light(t_data *data, float *point, t_light *light)
 {
 	float		t;
 	float		*ray;
 
 	t = 0;
 	ray = malloc(sizeof(float) * 3);
-	ray = vector_two_points(point, data->lights->coord, ray);
+	ray = vector_two_points(point, light->coord, ray);
 	normalize_vector(ray);
 	t = check_sp_diff(data, t, ray);
 	if (t == 0)

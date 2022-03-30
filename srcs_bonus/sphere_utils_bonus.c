@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 void	calc_coeff_sp(float *ray, float *origin, t_sphere *sphere, float *b)
 {
