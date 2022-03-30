@@ -46,7 +46,6 @@ float	check_pl_diff(t_data *data, float t, float *ray, float *point)
 		v0 = -(a[0] * point[0] + a[1] * point[1]
 				+ a[2] * point[2] + a[3]);
 		t = intersection_plane(ray, a, v0);
-//		t = intersection_plane(data, ray, a, v0);
 		if (t > 0)
 		{
 			if (t > data->nearest_point)
@@ -62,21 +61,20 @@ float	check_pl_diff(t_data *data, float t, float *ray, float *point)
 
 float	check_cyl_diff(t_data *data, float t, float *ray)
 {
-	t_cylinder	*current_cyl;
+	t_cylinder	*current;
 
-	current_cyl = data->cylinders;
-	while (current_cyl != NULL)
+	current = data->cylinders;
+	while (current != NULL)
 	{
-		t = intersection_cylinder_body(ray, data->cross_p, current_cyl);
+		t = intersection_cylinder_body(ray, data->cross_p, current);
 		if (t > 0)
-		{
 			if (t < data->nearest_point)
-//			if (t > data->nearest_point)
-//				t = 0;
-//			else
 				break ;
-		}
-		t = intersection_cylinder_cap(ray, data->cross_p, current_cyl, 0);
+		t = intersection_cylinder_cap(ray, data->cross_p, current, 0);
+		if (t > 0)
+			if (t < data->nearest_point)
+				break ;
+		t = intersection_cylinder_cap(ray, data->cross_p, current, 1);
 		if (t > 0)
 		{
 			if (t > data->nearest_point)
@@ -84,15 +82,7 @@ float	check_cyl_diff(t_data *data, float t, float *ray)
 			else
 				break ;
 		}
-		t = intersection_cylinder_cap(ray, data->cross_p, current_cyl, 1);
-		if (t > 0)
-		{
-			if (t > data->nearest_point)
-				t = 0;
-			else
-				break ;
-		}
-		current_cyl = current_cyl->next;
+		current = current->next;
 	}
 	return (t);
 }
@@ -102,6 +92,7 @@ int	check_diffuse_light(t_data *data, float *point)
 	float		t;
 	float		*ray;
 
+	t = 0;
 	ray = malloc(sizeof(float) * 3);
 	ray = vector_two_points(point, data->lights->coord, ray);
 	normalize_vector(ray);

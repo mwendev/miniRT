@@ -29,16 +29,12 @@ float	*normalize_plane(float *orient, float *coord, float *par)
 	return (par);
 }
 
-//float	intersection_plane(t_data *data, float *ray, float *a, float v0)
 float	intersection_plane(float *ray, float *a, float v0)
 {
 	float	t;
 	float	vd;
 
-//	data->plane_norm_koeff = 1;
 	vd = (a[0] * ray[0] + a[1] * ray[1] + a[2] * ray[2]);
-//	if (vd > 0)
-//		data->plane_norm_koeff = -1;
 	t = v0 / vd;
 	if (t <= 0)
 		return (0);
@@ -52,7 +48,7 @@ void	check_and_mix_ambient(t_data *data, float t, int i, t_plane *current)
 	{
 		data->obj_counter.shape = 'p';
 		mix_ambient(data, data->ambient.rgb, current->rgb,
-					data->ambient.ratio);
+			data->ambient.ratio);
 	}
 }
 
@@ -73,7 +69,6 @@ void	handle_planes(float *ray, t_data *data)
 		v0 = - (a[0] * data->camera.coord[0] + a[1] * data->camera.coord[1]
 				+ a[2] * data->camera.coord[2] + a[3]);
 		t = intersection_plane(ray, a, v0);
-//		t = intersection_plane(data, ray, a, v0);
 		if (t > 0)
 			check_and_mix_ambient(data, t, i, current);
 		current = current->next;

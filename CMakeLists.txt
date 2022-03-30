@@ -39,6 +39,7 @@ set(SOURCE_FILES
         srcs/diffuse_light_check.c
         srcs/diffuse_light_handle.c
         srcs/mem_utils.c
+        srcs/cylinder_cap_utils.c
         )
 
 include_directories(includes)

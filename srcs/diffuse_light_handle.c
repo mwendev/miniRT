@@ -75,8 +75,7 @@ int	diffuse_light(t_data *data)
 		else if (data->obj_counter.shape == 'p')
 			norm_obj = handle_pl_diff(data);
 		else if (data->obj_counter.shape == 'y'
-		|| data->obj_counter.shape == 'z'
-		|| data->obj_counter.shape == 'r')
+			|| data->obj_counter.shape == 'z')
 			norm_obj = handle_cyl_diff(data);
 		cross_to_light = malloc(sizeof (float) * 3);
 		cross_to_light = vector_two_points(data->cross_p, data->lights->coord,

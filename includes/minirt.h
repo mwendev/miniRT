@@ -142,6 +142,7 @@ typedef struct s_data
 	t_selected	obj_counter;
 	int			plane_norm_koeff;
 	float		pixel_size;
+	float		t;
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;

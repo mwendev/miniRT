@@ -61,8 +61,12 @@ void	init_window(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		fd;
 
 	if (argc != 2)
+		terminate(NULL, "Invalid input", 1);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
 		terminate(NULL, "Invalid input", 1);
 	init_data(&data);
 	parse(argv[1], &data);
