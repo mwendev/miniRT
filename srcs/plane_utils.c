@@ -35,6 +35,8 @@ float	intersection_plane(float *ray, float *a, float v0)
 	float	vd;
 
 	vd = (a[0] * ray[0] + a[1] * ray[1] + a[2] * ray[2]);
+	if (vd == 0)
+		return (0);
 	t = v0 / vd;
 	if (t <= 0)
 		return (0);
