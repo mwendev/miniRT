@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 12:24:17 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/10 18:30:39 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 01:29:25 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@
 # define XK_b	11
 # define XK_n	45
 # define XK_m	46
+
+# define MAC_PLUS			24
+# define MAC_MINUS			27
+# define XK_plus			24
+# define XK_minus			27
 
 # define MAC_EXC	53
 # define XK_Escape	53

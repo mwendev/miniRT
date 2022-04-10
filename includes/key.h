@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 12:24:17 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 01:25:13 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 01:30:05 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define MAC_B	0x0062
 # define MAC_N	0x006e
 # define MAC_M	0x006d
+# define MAC_PLUS			0x002b
+# define MAC_MINUS			0x002d
 
 # include <X11/X.h>
 # include <X11/keysym.h>
