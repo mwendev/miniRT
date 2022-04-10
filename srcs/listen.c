@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 23:02:53 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 18:52:08 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 00:16:20 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,9 @@ int	listen_key(int key, t_data *data)
 		|| key == MAC_W || key == MAC_E || key == XK_1 || key == XK_2
 		|| key == XK_3 || key == XK_q || key == XK_w || key == XK_e)
 		translate(key, data);
+	else if (key == MAC_H || key == XK_h || key == MAC_M || key == XK_m
+		|| key == MAC_K || key == XK_k || key == MAC_B || key == XK_b
+		|| key == MAC_J || key == XK_j || key == MAC_N || key == XK_n)
+		rotate(key, data);
 	return (0);
 }

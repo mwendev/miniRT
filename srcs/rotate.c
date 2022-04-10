@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:10:16 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/10 19:39:33 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 01:23:30 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	operate_z(t_data *data)
 	}
 	// else if (data->selected.shape == 'o')
 
-	*x = *x * cos(data->rotation) - *y * sin(data->rotation);
-	*y = *x * sin(data->rotation) * -1 + *y * cos(data->rotation);
+	*x = *x * cos(data->rotation[2]) - *y * sin(data->rotation[2]);
+	*y = *x * sin(data->rotation[2]) * -1 + *y * cos(data->rotation[2]);
 }
 
 void	operate_y(t_data *data)
@@ -68,8 +68,8 @@ void	operate_y(t_data *data)
 	}
 	// else if (data->selected.shape == 'o')
 
-	*x = *x * cos(data->rotation) + *z * cos(data->rotation) * -1;
-	*z = *x * sin(data->rotation) + *z * cos(data->rotation);
+	*x = *x * cos(data->rotation[1]) + *z * cos(data->rotation[1]) * -1;
+	*z = *x * sin(data->rotation[1]) + *z * cos(data->rotation[1]);
 }
 
 void	operate_x(t_data *data)
@@ -98,23 +98,41 @@ void	operate_x(t_data *data)
 	}
 	// else if (data->selected.shape == 'o')
 
-	*y = *y * cos(data->rotation) + *z * sin(data->rotation);
-	*z = *y * sin(data->rotation) * -1 + *z * cos(data->rotation);
+	*y = *y * cos(data->rotation[0]) + *z * sin(data->rotation[0]);
+	*z = *y * sin(data->rotation[0]) * -1 + *z * cos(data->rotation[0]);
 }
 
 void	set_rotation(int key, t_data *data)
 {
-	if (data->selected.shape == 'y' && )
-		data->cylinders->coord[axis]++;
-	else if (data->selected.shape == 'p')
-		data->planes->coord[axis]++;
-	else if (data->selected.shape == 'c')
-		data->camera.coord[axis]++;
+	float	prev[3];
+	int		i;
+
+	prev[0] = data->rotation[0];
+	prev[1] = data->rotation[1];
+	prev[2] = data->rotation[2];
+	if (key == MAC_H || key == XK_h)
+		data->rotation[0] -= 0.5;
+	else if (key == MAC_M || key == XK_m)
+		data->rotation[0] += 0.5;
+	else if (key == MAC_K || key == XK_k)
+		data->rotation[1] += 0.5;
+	else if (key == MAC_B || key == XK_b)
+		data->rotation[1] -= 0.5;
+	else if (key == MAC_J || key == XK_j)
+		data->rotation[2] += 0.5;
+	else if (key == MAC_N || key == XK_n)
+		data->rotation[2] -= 0.5;
+	i = -1;
+	while (++i >= 0 && i < 3)
+		if (data->rotation[i] == 0 && prev[i])
+			data->rotation[i] = prev[i] *= -1;
+
 }
 
 void	rotate(int key, t_data *data)
 {
-	distribute(data);
+	if (distribute(data))
+		return ;
 	set_rotation(key, data);
 	if (key == MAC_H || key == XK_h || key == MAC_M || key == XK_m)
 		operate_x(data);
