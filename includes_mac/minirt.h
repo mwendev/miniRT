@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 22:01:40 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/10 19:14:46 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_camera
 	float	up[3];
 	float	right[3];
 	float	fov;
-	int		rotation;
+	int		rotation[3];
 }	t_camera;
 
 typedef struct s_light
@@ -139,6 +139,9 @@ typedef struct s_data
 	char		inter_shape; // s - sphere, p - plane, c - cylinder, n - cone
 	float		light_dist;
 	t_selected	obj_counter;
+	int			plane_norm_koeff;
+	float		pixel_size;
+	float		t;
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;
@@ -172,12 +175,27 @@ void	select_shape(char shape, t_data *data);
 int		create_trgb(int t, int r, int g, int b);
 void	put_menu(t_data *data);
 void	mix_light(t_data *data, int *rgb, float angle, float tr);
-void	mix_ambient(t_data *data, int *rgb, t_sphere *current, float tr);
+void	mix_ambient(t_data *data, int *rgb, int *obj_rgb, float tr);
 int		check_nearest_point(t_data *data, float t, int i);
 float	intersection_sphere(float *ray, float *origin, t_sphere *sphere);
 void	handle_spheres(float *ray, t_data *data);
 void	handle_planes(float *ray, t_data *data);
 int		rewind_link(t_data *data);
 void	translate(int key, t_data *data);
+float	intersection_plane(float *ray, float *a, float v0);
+//float	intersection_plane(t_data *data, float *ray, float *a, float v0);
+float	*normalize_plane(float *orient, float *coord, float *par);
+void	handle_cylinders(float *ray, t_data *data);
+float	dot_prod(float *vect1, float *vect2);
+float	*normal_vector_sp(t_sphere *current, float *intersect);
+float	*normal_vector_cyl_body(t_cylinder *current, float *intersect);
+float	intersection_cylinder_body(float *ray, float *origin,
+								t_cylinder *cylinder);
+int		diffuse_light(t_data *data);
+int		check_diffuse_light(t_data *data, float *point);
+float	free_return_float(float *val, float ret_val);
+float	intersection_cylinder_cap(float *ray, float *origin,
+									t_cylinder *cylinder, float offset);
+void	distribute(t_data *data);
 
 #endif

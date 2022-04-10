@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 12:24:17 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 20:13:22 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/10 18:30:39 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,22 @@
 # define XK_w	13
 # define XK_e	14
 
+# define MAC_H	4
+# define MAC_J	38
+# define MAC_K	40
+# define MAC_B	11
+# define MAC_N	45
+# define MAC_M	46
+
+# define XK_h	4
+# define XK_j	38
+# define XK_k	40
+# define XK_b	11
+# define XK_n	45
+# define XK_m	46
+
 # define MAC_EXC	53
 # define XK_Escape	53
-
 
 # define MAIN_PAD_A				0
 # define MAIN_PAD_D				2
