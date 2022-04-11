@@ -12,7 +12,7 @@ obj/parse_utils.o obj/terminate.o obj/tracer.o obj/parse_shapes.o obj/listen.o \
 obj/vector_utils.o obj/tracer_camera.o obj/put_pixel.o obj/color_utils.o \
 obj/plane_utils.o obj/sphere_utils.o obj/cylinder_utils.o obj/translate.o \
 obj/select.o obj/diffuse_light_check.o obj/diffuse_light_handle.o \
-obj/mem_utils.o obj/cylinder_cap_utils.o
+obj/mem_utils.o obj/cylinder_cap_utils.o obj/rotate.o obj/resize.o
 
 OBJ_BONUS = obj/main_bonus.o obj/get_next_line_bonus.o obj/get_next_line_utils_bonus.o obj/parse_bonus.o \
 obj/parse_utils_bonus.o obj/terminate_bonus.o obj/tracer_bonus.o obj/parse_shapes_bonus.o obj/listen_bonus.o \
@@ -92,6 +92,12 @@ obj/mem_utils.o: srcs/mem_utils.c
 
 obj/cylinder_cap_utils.o: srcs/cylinder_cap_utils.c
 	gcc -c -g srcs/cylinder_cap_utils.c -I ./includes -o obj/cylinder_cap_utils.o
+
+obj/rotate.o: srcs/rotate.c
+	gcc -c -g srcs/rotate.c -I ./includes -o obj/rotate.o
+
+obj/resize.o: srcs/resize.c
+	gcc -c -g srcs/resize.c -I ./includes -o obj/resize.o
 
 obj/main_bonus.o: srcs_bonus/main_bonus.c
 	gcc -c -g $(W) srcs_bonus/main_bonus.c -I ./includes -o obj/main_bonus.o

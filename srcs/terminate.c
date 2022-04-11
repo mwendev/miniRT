@@ -92,7 +92,7 @@ int	terminate(t_data *data, char *msg, int if_exit)
 		{
 			mlx_destroy_image(data->mlx, data->img);
 			mlx_destroy_window(data->mlx, data->mlx_win);
-			// mlx_destroy_display(data->mlx);
+//			mlx_destroy_display(data->mlx);
 			free(data->mlx);
 		}
 		if (data->mouse)
