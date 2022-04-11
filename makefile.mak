@@ -6,7 +6,7 @@
 #    By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 10:00:09 by mwen              #+#    #+#              #
-#    Updated: 2022/04/11 01:33:38 by mwen             ###   ########.fr        #
+#    Updated: 2022/04/11 12:27:18 by mwen             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS		=	$(addprefix $(DIR_SRCS), $(SRC))
 
 DIR_HEADERS	=	includes_mac/
 
-CFLAG		=	#-Wall -Wextra -Werror
+CFLAG		=	-Wall -Wextra -Werror
 MFLAG		=	-framework OpenGL -framework AppKit
 
 LIBFT			=	$(LIBFT_DIR)libft.a

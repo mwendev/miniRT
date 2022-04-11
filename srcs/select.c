@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:04:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 00:57:33 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 15:20:02 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	select_number(int selected, t_data *data)
 	else if (data->selected.shape == 'p')
 		while (i-- && data->planes->next && ++ret)
 			data->planes = data->planes->next;
-	// else if (data->selected.shape == 'o')
 	rewind_link(data);
 	if (selected - ret)
 		return (0);

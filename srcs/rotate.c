@@ -6,18 +6,14 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:10:16 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 01:23:30 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 15:23:06 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	operate_z(t_data *data)
+void	operate_z(float *x, float *y, float *z, t_data *data)
 {
-	float	*x;
-	float	*y;
-	float	*z;
-
 	if (data->selected.shape == 'c')
 	{
 		x = &data->camera.orient[0];
@@ -36,18 +32,12 @@ void	operate_z(t_data *data)
 		y = &data->planes->orient[1];
 		z = &data->planes->orient[2];
 	}
-	// else if (data->selected.shape == 'o')
-
 	*x = *x * cos(data->rotation[2]) - *y * sin(data->rotation[2]);
 	*y = *x * sin(data->rotation[2]) * -1 + *y * cos(data->rotation[2]);
 }
 
-void	operate_y(t_data *data)
+void	operate_y(float *x, float *y, float *z, t_data *data)
 {
-	float	*x;
-	float	*y;
-	float	*z;
-
 	if (data->selected.shape == 'c')
 	{
 		x = &data->camera.orient[0];
@@ -66,18 +56,12 @@ void	operate_y(t_data *data)
 		y = &data->planes->orient[1];
 		z = &data->planes->orient[2];
 	}
-	// else if (data->selected.shape == 'o')
-
 	*x = *x * cos(data->rotation[1]) + *z * cos(data->rotation[1]) * -1;
 	*z = *x * sin(data->rotation[1]) + *z * cos(data->rotation[1]);
 }
 
-void	operate_x(t_data *data)
+void	operate_x(float *x, float *y, float *z, t_data *data)
 {
-	float	*x;
-	float	*y;
-	float	*z;
-
 	if (data->selected.shape == 'c')
 	{
 		x = &data->camera.orient[0];
@@ -96,8 +80,6 @@ void	operate_x(t_data *data)
 		y = &data->planes->orient[1];
 		z = &data->planes->orient[2];
 	}
-	// else if (data->selected.shape == 'o')
-
 	*y = *y * cos(data->rotation[0]) + *z * sin(data->rotation[0]);
 	*z = *y * sin(data->rotation[0]) * -1 + *z * cos(data->rotation[0]);
 }
@@ -125,8 +107,7 @@ void	set_rotation(int key, t_data *data)
 	i = -1;
 	while (++i >= 0 && i < 3)
 		if (data->rotation[i] == 0 && prev[i])
-			data->rotation[i] = prev[i] *= -1;
-
+			data->rotation[i] = prev[i] * -1;
 }
 
 void	rotate(int key, t_data *data)
@@ -135,11 +116,11 @@ void	rotate(int key, t_data *data)
 		return ;
 	set_rotation(key, data);
 	if (key == MAC_H || key == XK_h || key == MAC_M || key == XK_m)
-		operate_x(data);
+		operate_x(0, 0, 0, data);
 	else if (key == MAC_K || key == XK_k || key == MAC_B || key == XK_b)
-		operate_y(data);
+		operate_y(0, 0, 0, data);
 	else if (key == MAC_J || key == XK_j || key == MAC_N || key == XK_n)
-		operate_z(data);
+		operate_z(0, 0, 0, data);
 	rewind_link(data);
 	fill_image(data);
 }
