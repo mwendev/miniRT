@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/10 19:15:32 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 01:31:30 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 //# define PI						3.1415926535897932384626433
 
 # include <math.h>
-// # include "../minilibx_opengl/mlx.h"
-# include <mlx.h>
+# include "../minilibx_opengl/mlx.h"
+// # include <mlx.h>
 # include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -197,6 +197,7 @@ int		check_diffuse_light(t_data *data, float *point, t_light *light);
 float	free_return_float(float *val, float ret_val);
 float	intersection_cylinder_cap(float *ray, float *origin,
 									t_cylinder *cylinder, float offset);
-void	distribute(t_data *data);
-
+int		distribute(t_data *data);
+void	rotate(int key, t_data *data);
+void	resize(int key, t_data *data);
 #endif

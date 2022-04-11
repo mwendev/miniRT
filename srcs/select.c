@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:04:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 20:50:35 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 00:57:33 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	select_shape(char shape, t_data *data)
 {
 	void	*img;
 
+	data->rotation[0] = 0;
+	data->rotation[1] = 0;
+	data->rotation[2] = 0;
 	if (data->selected.shape == shape && shape != 'c')
 		data->selected.number = select_number(++data->selected.number, data);
 	else
