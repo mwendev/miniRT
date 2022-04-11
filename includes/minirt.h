@@ -140,7 +140,7 @@ typedef struct s_data
 	char		inter_shape; // s - sphere, p - plane, c - cylinder, n - cone
 	float		light_dist;
 	t_selected	obj_counter;
-	int			plane_norm_koeff;
+//	int			plane_norm_koeff;
 	float		pixel_size;
 	float		t;
 //	float		scr_dist;
