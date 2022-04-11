@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 23:02:53 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 15:21:44 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 15:29:53 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	listen_select(int key, t_data *data)
 
 int	listen_key(int key, t_data *data)
 {
+	listen_select(key, data);
 	if (key == MAC_EXC || key == XK_Escape)
 		terminate(data, NULL, 1);
-	listen_select(key, data);
 	else if (key == MAC_1 || key == MAC_2 || key == MAC_3 || key == MAC_Q
 		|| key == MAC_W || key == MAC_E || key == XK_1 || key == XK_2
 		|| key == XK_3 || key == XK_q || key == XK_w || key == XK_e)
