@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   diffuse_light_handle.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aserdyuk <aserdyuk@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 10:08:32 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/27 10:08:33 by aserdyuk         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:28:59 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	diffuse_light(t_data *data)
 	float		*cross_to_light;
 	float		angle_v;
 
+	norm_obj = NULL;
 	if (data->intersection == '1' && check_diffuse_light(data, data->cross_p))
 	{
 		if (data->obj_counter.shape == 's')

@@ -6,11 +6,24 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:04:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 00:57:33 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 16:25:02 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+float	*select_orient(int axis, t_data *data)
+{
+	if (data->selected.shape == 'c')
+		return (&data->camera.orient[axis]);
+	else if (data->selected.shape == 'y')
+		return (&data->cylinders->orient[axis]);
+	else if (data->selected.shape == 'p')
+		return (&data->planes->orient[axis]);
+	// else if (data->selected.shape == 'l')
+		// return (&data->lights->orient[axis]);
+	return (NULL);
+}
 
 int	select_number(int selected, t_data *data)
 {
@@ -31,7 +44,6 @@ int	select_number(int selected, t_data *data)
 	else if (data->selected.shape == 'p')
 		while (i-- && data->planes->next && ++ret)
 			data->planes = data->planes->next;
-	// else if (data->selected.shape == 'o')
 	rewind_link(data);
 	if (selected - ret)
 		return (0);

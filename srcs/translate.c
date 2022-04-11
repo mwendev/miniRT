@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 18:53:10 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 01:07:42 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 15:19:24 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,26 @@
 
 void	operate(char operation, int axis, t_data *data)
 {
-	if (operation == '-')
-	{
-		if (data->selected.shape == 'l')
-			data->lights->coord[axis]--;
-		else if (data->selected.shape == 's')
-			data->spheres->coord[axis]--;
-		else if (data->selected.shape == 'y')
-			data->cylinders->coord[axis]--;
-		else if (data->selected.shape == 'p')
-			data->planes->coord[axis]--;
-		else if (data->selected.shape == 'c')
-			data->camera.coord[axis]--;
-	}
-	if (operation == '+')
-	{
-		if (data->selected.shape == 'l')
-			data->lights->coord[axis]++;
-		else if (data->selected.shape == 's')
-			data->spheres->coord[axis]++;
-		else if (data->selected.shape == 'y')
-			data->cylinders->coord[axis]++;
-		else if (data->selected.shape == 'p')
-			data->planes->coord[axis]++;
-		else if (data->selected.shape == 'c')
-			data->camera.coord[axis]++;
-	}
+	if (operation == '-' && data->selected.shape == 'l')
+		data->lights->coord[axis]--;
+	else if (operation == '-' && data->selected.shape == 's')
+		data->spheres->coord[axis]--;
+	else if (operation == '-' && data->selected.shape == 'y')
+		data->cylinders->coord[axis]--;
+	else if (operation == '-' && data->selected.shape == 'p')
+		data->planes->coord[axis]--;
+	else if (operation == '-' && data->selected.shape == 'c')
+		data->camera.coord[axis]--;
+	else if (operation == '+' && data->selected.shape == 'l')
+		data->lights->coord[axis]++;
+	else if (operation == '+' && data->selected.shape == 's')
+		data->spheres->coord[axis]++;
+	else if (operation == '+' && data->selected.shape == 'y')
+		data->cylinders->coord[axis]++;
+	else if (operation == '+' && data->selected.shape == 'p')
+		data->planes->coord[axis]++;
+	else if (operation == '+' && data->selected.shape == 'c')
+		data->camera.coord[axis]++;
 }
 
 int	distribute(t_data *data)
@@ -66,7 +60,6 @@ int	distribute(t_data *data)
 	else
 		ret = 1;
 	return (ret);
-	// else if (data->selected.shape == 'o')
 }
 
 void	translate(int key, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/11 01:31:30 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 16:17:07 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,4 +200,6 @@ float	intersection_cylinder_cap(float *ray, float *origin,
 int		distribute(t_data *data);
 void	rotate(int key, t_data *data);
 void	resize(int key, t_data *data);
+float	*select_orient(int axis, t_data *data);
+
 #endif

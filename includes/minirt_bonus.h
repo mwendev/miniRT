@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/10 19:15:32 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 16:17:45 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct s_data
 	int			plane_norm_koeff;
 	float		pixel_size;
 	float		t;
+	float		rotation[3];
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;
@@ -198,5 +199,5 @@ float	free_return_float(float *val, float ret_val);
 float	intersection_cylinder_cap(float *ray, float *origin,
 									t_cylinder *cylinder, float offset);
 void	distribute(t_data *data);
-
+float	*select_orient(int axis, t_data *data);
 #endif
