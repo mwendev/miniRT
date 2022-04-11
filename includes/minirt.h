@@ -143,6 +143,7 @@ typedef struct s_data
 //	int			plane_norm_koeff;
 	float		pixel_size;
 	float		t;
+	float		rotation[3];
 //	float		scr_dist;
 //	int			scr_res_w;
 //	int			scr_res_h;
@@ -197,6 +198,6 @@ int		check_diffuse_light(t_data *data, float *point);
 float	free_return_float(float *val, float ret_val);
 float	intersection_cylinder_cap(float *ray, float *origin,
 									t_cylinder *cylinder, float offset);
-void	distribute(t_data *data);
+int	distribute(t_data *data);
 
 #endif
