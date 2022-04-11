@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:10:16 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 16:25:47 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 20:07:08 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ void	set_rotation(int key, t_data *data)
 	prev[1] = data->rotation[1];
 	prev[2] = data->rotation[2];
 	if (key == MAC_H || key == XK_h)
-		data->rotation[0] -= 0.5;
+		data->rotation[0] -= 0.25;
 	else if (key == MAC_M || key == XK_m)
-		data->rotation[0] += 0.5;
+		data->rotation[0] += 0.25;
 	else if (key == MAC_K || key == XK_k)
-		data->rotation[1] += 0.5;
+		data->rotation[1] += 0.25;
 	else if (key == MAC_B || key == XK_b)
-		data->rotation[1] -= 0.5;
+		data->rotation[1] -= 0.25;
 	else if (key == MAC_J || key == XK_j)
-		data->rotation[2] += 0.5;
+		data->rotation[2] += 0.25;
 	else if (key == MAC_N || key == XK_n)
-		data->rotation[2] -= 0.5;
+		data->rotation[2] -= 0.25;
 	i = -1;
 	while (++i >= 0 && i < 3)
 		if (data->rotation[i] == 0 && prev[i])
