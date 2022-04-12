@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:04:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 16:25:02 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/13 00:38:17 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ float	*select_orient(int axis, t_data *data)
 		return (&data->cylinders->orient[axis]);
 	else if (data->selected.shape == 'p')
 		return (&data->planes->orient[axis]);
-	// else if (data->selected.shape == 'l')
-		// return (&data->lights->orient[axis]);
 	return (NULL);
 }
 

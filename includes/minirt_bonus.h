@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/11 16:17:45 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/12 16:33:25 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ typedef struct s_data
 //	float		fov;
 }	t_data;
 
-int		parse(char	*file, t_data *data);
+int		parse(int *check, char *file, t_data *data);
 int		terminate(t_data *data, char *msg, int if_exit);
 int		stof(char *str, float *f, int if_free);
 char	*parse_info(char *str, int *i);

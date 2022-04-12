@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:43:15 by mwen              #+#    #+#             */
-/*   Updated: 2021/11/22 02:27:44 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 21:03:22 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,5 @@ void	draw(t_fdf *data)
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	draw_menu(data);
+	printf("%f %f %f\n", data->cam->rx, data->cam->ry, data->cam->rz);
 }

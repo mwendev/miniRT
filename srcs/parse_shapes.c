@@ -6,11 +6,23 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:11:51 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 20:45:37 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/12 18:28:52 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	parse_cy_utils(char *str, t_cylinder *new, int *i, int type)
+{
+	if ((type == 1 && parse_farray(parse_info(str, i), new->coord, 0))
+		|| (type == 2 && parse_farray(parse_info(str, i), new->orient,
+				1)) || (type == 3 && stof(parse_info(str, i),
+				&new->diameter, 1)) || (type == 4 && stof(parse_info
+				(str, i), &new->height, 1)) || (type == 5
+			&& parse_color(parse_info(str, i), new->rgb)))
+		return (1);
+	return (0);
+}
 
 int	parse_cy(char *str, t_data *data, int type, t_cylinder *new)
 {
@@ -31,12 +43,7 @@ int	parse_cy(char *str, t_data *data, int type, t_cylinder *new)
 	}
 	while (str[i] != '\n' && str[i++])
 		if (str[i] != ' ' && str[i] != '\t' && ++type)
-			if ((type == 1 && parse_farray(parse_info(str, &i), new->coord, 0))
-				|| (type == 2 && parse_farray(parse_info(str, &i), new->orient,
-						1)) || (type == 3 && stof(parse_info(str, &i),
-						&new->diameter, 1)) || (type == 4 && stof(parse_info
-						(str, &i), &new->height, 1)) || (type == 5
-					&& parse_color(parse_info(str, &i), new->rgb)))
+			if (parse_cy_utils(str, new, &i, type))
 				return (terminate(data, NULL, 0));
 	if (type > 5 || new->diameter <= 0 || new->height <= 0)
 		return (terminate(data, "Error\nInvalid params to cylinder", 0));

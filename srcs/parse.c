@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 20:46:45 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 20:46:08 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/12 16:48:49 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ int	parse_ambient_light(char *tr, t_data *data)
 	return (0);
 }
 
-int	parse_type(char *tr, t_data *data)
+int	parse_type(int *check, char *tr, t_data *data)
 {
 	int	id_len;
 
 	id_len = 0;
 	while (tr[id_len] && tr[id_len] != ' ' && tr[id_len] != '\t')
 		id_len++;
-	if (id_len == 1 && tr[0] == 'A')
+	if (id_len == 1 && tr[0] == 'A' && ++(*check))
 		return (parse_ambient_light(tr + id_len, data));
-	else if (id_len == 1 && tr[0] == 'C')
+	else if (id_len == 1 && tr[0] == 'C' && ++(*check))
 		return (parse_camera(tr + id_len, data, 0));
-	else if (id_len == 1 && tr[0] == 'L')
+	else if (id_len == 1 && tr[0] == 'L' && ++(*check))
 		return (parse_light(tr + id_len, data, 0, malloc(sizeof(t_light))));
 	else if (id_len == 2 && !ft_strncmp(tr, "sp", 2))
 		return (parse_sp(tr + id_len, data, 0, malloc(sizeof(t_sphere))));
@@ -103,7 +103,7 @@ int	parse_type(char *tr, t_data *data)
 		return (terminate(data, "Invalid type of element in .rt", 0));
 }
 
-int	parse(char	*file, t_data *data)
+int	parse(int *check, char *file, t_data *data)
 {
 	int		fd;
 	char	*tr;
@@ -116,7 +116,7 @@ int	parse(char	*file, t_data *data)
 	{
 		while (get_next_line(fd, &tr) >= 0 && *tr)
 		{
-			if (parse_type(tr, data))
+			if (parse_type(check, tr, data))
 			{
 				free(tr);
 				exit (close(fd));

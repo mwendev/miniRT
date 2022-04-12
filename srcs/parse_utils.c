@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 20:15:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 20:43:47 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/12 18:31:41 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	parse_farray(char *line, float *array, int orientation)
 	free(split);
 	if (orientation && (i != 3 || invalid || sqrt(pow(array[0], 2)
 				+ pow(array[1], 2) + pow(array[2], 2)) < 0.9))
-		return (terminate(NULL, "Error\nInvalid 3d orientation value", 0));
+		return (terminate(NULL, "Error\nInvalid 3D orientation value", 0));
 	if (i != 3)
 		return (terminate(NULL, "Error\nInvalid coordinate value", 0));
 	return (0);
