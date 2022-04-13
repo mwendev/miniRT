@@ -17,7 +17,7 @@
 # define HEIGHT					600
 
 # include <math.h>
-# include "../minilibx-linux/mlx.h"
+# include "../minilibx-lin/mlx.h"
 # include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
