@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 10:08:32 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/11 20:55:16 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/13 23:12:13 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ float	*handle_cyl_diff(t_data *data)
 
 int	diffuse_light(t_data *data)
 {
-	float		*norm_obj;
-	float		*cross_to_light;
-	float		angle_v;
+	float	*norm_obj;
+	float	*cross_to_light;
+	float	angle_v;
 
 	if (data->intersection == '1' && check_diffuse_light(data, data->cross_p))
 	{

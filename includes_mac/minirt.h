@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/13 00:33:10 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/13 23:05:27 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_mouse
  * 'y' - cylinder
  * 'o' - cone
  */
+
 typedef struct s_selected
 {
 	char	shape;
