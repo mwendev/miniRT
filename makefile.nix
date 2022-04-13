@@ -4,6 +4,8 @@ INCLUDES = minirt.h
 
 SRC_DIR := srcs/
 SRC_DIR_BONUS := srcs_bonus/
+MKDIR_P = mkdir -p
+OBJ_DIR = obj
 
 W = -Wall -Werror -Wextra
 
@@ -22,11 +24,16 @@ obj/plane_utils_bonus.o obj/sphere_utils_bonus.o obj/cylinder_utils_bonus.o obj/
 obj/select_bonus.o obj/diffuse_light_check_bonus.o obj/diffuse_light_handle_bonus.o \
 obj/mem_utils_bonus.o obj/cylinder_cap_utils_bonus.o obj/rotate_bonus.o obj/resize_bonus.o
 
-$(NAME): $(OBJ) libft/libft.a minilibx-lin/libmlx.a
+$(NAME): directories $(OBJ) libft/libft.a minilibx-lin/libmlx.a
 	gcc $(OBJ) -L ./libft -lft -L ./minilibx-lin -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT
 
-$(NAME_BONUS): $(OBJ_BONUS) libft/libft.a
+$(NAME_BONUS): directories $(OBJ_BONUS) libft/libft.a
 	gcc $(OBJ_BONUS) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT_bonus
+
+directories: ${OBJ_DIR}
+
+${OBJ_DIR}:
+	${MKDIR_P} ${OBJ_DIR}
 
 obj/main.o: srcs/main.c
 	gcc -c -g $(W) srcs/main.c -I ./includes -I ./minilibx-lin -o obj/main.o

@@ -6,3 +6,5 @@ test_maps
 miniRT
 miniRT_bonus
 obj
+minilibx_mms
+CMakeLists.txt
