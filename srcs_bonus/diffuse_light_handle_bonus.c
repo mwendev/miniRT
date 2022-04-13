@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   diffuse_light_handle.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aserdyuk <aserdyuk@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 10:08:32 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/27 10:08:33 by aserdyuk         ###   ########.fr       */
+/*   Updated: 2022/04/11 20:55:16 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ float	*handle_pl_diff(t_data *data)
 	current_pl = data->planes;
 	while (++j < data->obj_counter.number)
 		current_pl = current_pl->next;
-	norm_obj[0] = current_pl->orient[0] * data->plane_norm_koeff;
-	norm_obj[1] = current_pl->orient[1] * data->plane_norm_koeff;
-	norm_obj[2] = current_pl->orient[2] * data->plane_norm_koeff;
+	norm_obj[0] = current_pl->orient[0];
+	norm_obj[1] = current_pl->orient[1];
+	norm_obj[2] = current_pl->orient[2];
 	return (norm_obj);
 }
 

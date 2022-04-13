@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:49:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 20:50:58 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/12 16:33:58 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ void	init_data(t_data *data)
 	data->selected.number = 0;
 }
 
-void	set_listener(t_data *data)
+void	check_file(char *argv)
 {
-	mlx_key_hook(data->mlx_win, listen_key, data);
-	// mlx_hook(data->mlx_win, 4, 1L<<2, listen_mouse_pressed, data);
-	// mlx_hook(data->mlx_win, 5, 1L<<3, listen_mouse_released, data);
-	// mlx_hook(data->mlx_win, 6, 0, listen_mouse_moved, data);
+	int		fd;
+
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+	{
+		close(fd);
+		terminate(NULL, "Invalid input", 1);
+	}
+	close(fd);
 }
 
 void	init_window(t_data *data)
@@ -58,26 +63,43 @@ void	init_window(t_data *data)
 	put_menu(data);
 }
 
+void	normalize_input(t_data *data)
+{
+	t_cylinder	*current_cyl;
+	t_plane		*current_pl;
+
+	current_cyl = data->cylinders;
+	while (current_cyl != NULL)
+	{
+		normalize_vector(current_cyl->orient);
+		current_cyl = current_cyl->next;
+	}
+	current_pl = data->planes;
+	while (current_pl != NULL)
+	{
+		normalize_vector(current_pl->orient);
+		current_pl = current_pl->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		fd;
+	int		check;
 
+	check = 0;
 	if (argc != 2)
 		terminate(NULL, "Invalid input", 1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		close(fd);
-		terminate(NULL, "Invalid input", 1);
-	}
-	close(fd);
+	check_file(argv[1]);
 	init_data(&data);
-	parse(argv[1], &data);
+	if (parse(&check, argv[1], &data) || check < 3)
+		terminate(&data,
+			"Input must contain Ambient lighting AND Camera AND Light", 1);
 	data.pixel_size = (float)(tan(data.camera.fov * M_PI / 2 / 180)
 			/ (float)(WIDTH / 2));
 	init_window(&data);
+	normalize_input(&data);
 	fill_image(&data);
-	set_listener(&data);
+	mlx_key_hook(data.mlx_win, listen_key, &data);
 	mlx_loop(data.mlx);
 }

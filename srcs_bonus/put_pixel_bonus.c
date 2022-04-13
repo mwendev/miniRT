@@ -6,14 +6,18 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 19:19:20 by mwen              #+#    #+#             */
-/*   Updated: 2022/03/17 21:09:16 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/11 15:17:19 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
-char	*put_selected(t_data *data)
+char	*put_selected(int *y, char *num, t_data *data)
 {
+	if (data->selected.shape == 'l' || data->selected.shape == 's'
+		|| data->selected.shape == 'y' || data->selected.shape == 'o'
+		|| data->selected.shape == 'p')
+		mlx_string_put(data->mlx, data->mlx_win, 90, *y, 65280, num);
 	if (data->selected.shape == 'c')
 		return ("camera");
 	else if (data->selected.shape == 'l')
@@ -28,6 +32,25 @@ char	*put_selected(t_data *data)
 		return ("cone");
 	else
 		return ("");
+}
+
+void	put_operation(int *y, t_data *data)
+{
+	void	*m;
+	void	*w;
+
+	m = data->mlx;
+	w = data->mlx_win;
+	mlx_string_put(m, w, 15, *y += 25, 65280, "translate:");
+	mlx_string_put(m, w, 30, *y += 25, 65280, "x-axis: 1 (main pad)/E");
+	mlx_string_put(m, w, 30, *y += 25, 65280, "y-axis: 3 (main pad)/Q");
+	mlx_string_put(m, w, 30, *y += 25, 65280, "z-axis: 2 (main pad)/W");
+	mlx_string_put(m, w, 15, *y += 25, 65280, "rotate:");
+	mlx_string_put(m, w, 30, *y += 25, 65280, "x-axis: H/M");
+	mlx_string_put(m, w, 30, *y += 25, 65280, "y-axis: B/K");
+	mlx_string_put(m, w, 30, *y += 25, 65280, "z-axis: J/N");
+	mlx_string_put(m, w, 15, *y += 25, 65280, "resize:");
+	mlx_string_put(m, w, 30, *y += 25, 65280, "-/+");
 }
 
 void	put_menu(t_data *data)
@@ -48,18 +71,11 @@ void	put_menu(t_data *data)
 	mlx_string_put(m, w, 30, y += 25, 65280, "*spher: S");
 	mlx_string_put(m, w, 30, y += 25, 65280, "*plane: P");
 	mlx_string_put(m, w, 30, y += 25, 65280, "*cylinder: Y");
-	mlx_string_put(m, w, 30, y += 25, 65280, "*cone: O");
 	mlx_string_put(m, w, 30, y += 25, 65280, "*press again to");
 	mlx_string_put(m, w, 30, y += 15, 65280, "choose the next one");
 	mlx_string_put(m, w, 15, y += 25, 65280, "currently selected:");
-	mlx_string_put(m, w, 30, y += 25, 65280, put_selected(data));
-	if (data->selected.shape == 'l' || data->selected.shape == 's'
-		|| data->selected.shape == 'y' || data->selected.shape == 'o')
-		mlx_string_put(m, w, 90, y, 65280, num);
-	mlx_string_put(m, w, 15, y += 25, 65280, "translate:");
-	mlx_string_put(m, w, 30, y += 25, 65280, "x-axis: 1 (main pad)/E");
-	mlx_string_put(m, w, 30, y += 25, 65280, "y-axis: 3 (main pad)/Q");
-	mlx_string_put(m, w, 30, y += 25, 65280, "z-axis: 2 (main pad)/w");
+	mlx_string_put(m, w, 30, y += 25, 65280, put_selected(&y, num, data));
+	put_operation(&y, data);
 	free(num);
 }
 

@@ -69,7 +69,6 @@ int	diffuse_light(t_data *data)
 	float		*cross_to_light;
 	float		angle_v;
 
-	norm_obj = NULL;
 	if (data->intersection == '1' && check_diffuse_light(data, data->cross_p))
 	{
 		if (data->obj_counter.shape == 's')

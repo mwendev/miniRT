@@ -67,6 +67,8 @@ set(SOURCE_FILES_BONUS
         srcs_bonus/diffuse_light_handle_bonus.c
         srcs_bonus/mem_utils_bonus.c
         srcs_bonus/cylinder_cap_utils_bonus.c
+        srcs_bonus/resize_bonus.c
+        srcs_bonus/rotate_bonus.c
         )
 
 include_directories(includes)

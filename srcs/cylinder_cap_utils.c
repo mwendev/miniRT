@@ -36,7 +36,6 @@ void	cap_center(t_cylinder *cylinder, float *center, float offset)
 	}
 	else
 	{
-		normalize_vector(cylinder->orient);
 		center[0] = cylinder->coord[0] + cylinder->orient[0] * cylinder->height;
 		center[1] = cylinder->coord[1] + cylinder->orient[1] * cylinder->height;
 		center[2] = cylinder->coord[2] + cylinder->orient[2] * cylinder->height;

@@ -63,6 +63,25 @@ void	init_window(t_data *data)
 	put_menu(data);
 }
 
+void	normalize_input(t_data *data)
+{
+	t_cylinder	*current_cyl;
+	t_plane		*current_pl;
+
+	current_cyl = data->cylinders;
+	while (current_cyl != NULL)
+	{
+		normalize_vector(current_cyl->orient);
+		current_cyl = current_cyl->next;
+	}
+	current_pl = data->planes;
+	while (current_pl != NULL)
+	{
+		normalize_vector(current_pl->orient);
+		current_pl = current_pl->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -79,6 +98,7 @@ int	main(int argc, char **argv)
 	data.pixel_size = (float)(tan(data.camera.fov * M_PI / 2 / 180)
 			/ (float)(WIDTH / 2));
 	init_window(&data);
+	normalize_input(&data);
 	fill_image(&data);
 	mlx_key_hook(data.mlx_win, listen_key, &data);
 	mlx_loop(data.mlx);

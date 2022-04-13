@@ -10,16 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MINIRT_BONUS_H
+# define MINIRT_BONUS_H
 
 # define WIDTH					800
 # define HEIGHT					600
-//# define PI						3.1415926535897932384626433
 
 # include <math.h>
 # include "../minilibx_opengl/mlx.h"
-// # include <mlx.h>
 # include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -135,20 +133,14 @@ typedef struct s_data
 	float		cross_p[3];
 	int			curr_col;
 	int			curr_col_rgb[3];
-	float		nearest_point; // will be considered if intersection occurred
-	char		intersection; // indicated that for this pixel intersection occurred
-	char		inter_shape; // s - sphere, p - plane, c - cylinder, n - cone
+	float		nearest_point;
+	char		intersection;
+	char		inter_shape;
 	float		light_dist;
 	t_selected	obj_counter;
 	int			plane_norm_koeff;
 	float		pixel_size;
 	float		t;
-//	float		scr_dist;
-//	int			scr_res_w;
-//	int			scr_res_h;
-//	int			scr_w;
-//	int			scr_h;
-//	float		fov;
 }	t_data;
 
 int		parse(int *check, char *file, t_data *data);
@@ -184,19 +176,18 @@ void	handle_planes(float *ray, t_data *data);
 int		rewind_link(t_data *data);
 void	translate(int key, t_data *data);
 float	intersection_plane(float *ray, float *a, float v0);
-//float	intersection_plane(t_data *data, float *ray, float *a, float v0);
 float	*normalize_plane(float *orient, float *coord, float *par);
 void	handle_cylinders(float *ray, t_data *data);
 float	dot_prod(float *vect1, float *vect2);
 float	*normal_vector_sp(t_sphere *current, float *intersect);
 float	*normal_vector_cyl_body(t_cylinder *current, float *intersect);
 float	intersection_cylinder_body(float *ray, float *origin,
-								t_cylinder *cylinder);
+			t_cylinder *cylinder);
 int		diffuse_light(t_data *data);
 int		check_diffuse_light(t_data *data, float *point, t_light *light);
 float	free_return_float(float *val, float ret_val);
 float	intersection_cylinder_cap(float *ray, float *origin,
-									t_cylinder *cylinder, float offset);
+			t_cylinder *cylinder, float offset);
 int		distribute(t_data *data);
 void	rotate(int key, t_data *data);
 void	resize(int key, t_data *data);
