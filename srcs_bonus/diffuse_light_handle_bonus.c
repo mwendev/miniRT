@@ -69,6 +69,7 @@ void	manage_light(t_data *data, t_light *light)
 	float		*cross_to_light;
 	float		angle_v;
 
+	norm_obj = NULL;
 	if (data->obj_counter.shape == 's')
 		norm_obj = handle_sp_diff(data);
 	else if (data->obj_counter.shape == 'p')

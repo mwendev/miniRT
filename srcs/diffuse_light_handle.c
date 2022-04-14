@@ -69,14 +69,14 @@ int	diffuse_light(t_data *data)
 	float	*cross_to_light;
 	float	angle_v;
 
+	norm_obj = NULL;
 	if (data->intersection == '1' && check_diffuse_light(data, data->cross_p))
 	{
 		if (data->obj_counter.shape == 's')
 			norm_obj = handle_sp_diff(data);
 		else if (data->obj_counter.shape == 'p')
 			norm_obj = handle_pl_diff(data);
-		else if (data->obj_counter.shape == 'y'
-			|| data->obj_counter.shape == 'z')
+		else
 			norm_obj = handle_cyl_diff(data);
 		cross_to_light = malloc(sizeof (float) * 3);
 		cross_to_light = vector_two_points(data->cross_p, data->lights->coord,
