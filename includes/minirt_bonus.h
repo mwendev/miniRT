@@ -180,4 +180,11 @@ int		distribute(t_data *data);
 void	rotate(int key, t_data *data);
 void	resize(int key, t_data *data);
 float	*select_orient(int axis, t_data *data);
+int 	terminate1(t_data *data);
+void	free_light(t_data *data);
+void	free_spheres(t_data *data);
+void	free_plane(t_data *data);
+void	free_cylinder(t_data *data);
+int		redraw(t_data *data);
+
 #endif

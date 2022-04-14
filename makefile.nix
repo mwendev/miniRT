@@ -15,19 +15,21 @@ obj/vector_utils.o obj/tracer_camera.o obj/put_pixel.o obj/color_utils.o \
 obj/sphere_utils.o obj/cylinder_utils.o obj/translate.o obj/rotate.o \
 obj/select.o obj/plane_utils.o obj/diffuse_light_check.o \
 obj/diffuse_light_handle.o obj/mem_utils.o obj/cylinder_cap_utils.o \
-obj/resize.o
+obj/resize.o obj/x_window.o
 
 OBJ_BONUS = obj/main_bonus.o obj/get_next_line_bonus.o obj/get_next_line_utils_bonus.o obj/parse_bonus.o \
 obj/parse_utils_bonus.o obj/terminate_bonus.o obj/tracer_bonus.o obj/parse_shapes_bonus.o obj/listen_bonus.o \
 obj/vector_utils_bonus.o obj/tracer_camera_bonus.o obj/put_pixel_bonus.o obj/color_utils_bonus.o \
 obj/plane_utils_bonus.o obj/sphere_utils_bonus.o obj/cylinder_utils_bonus.o obj/translate_bonus.o \
 obj/select_bonus.o obj/diffuse_light_check_bonus.o obj/diffuse_light_handle_bonus.o \
-obj/mem_utils_bonus.o obj/cylinder_cap_utils_bonus.o obj/rotate_bonus.o obj/resize_bonus.o
+obj/mem_utils_bonus.o obj/cylinder_cap_utils_bonus.o obj/rotate_bonus.o obj/resize_bonus.o \
+obj/x_window_bonus.o
+
 
 $(NAME): $(OBJ) libft/libft.a minilibx-lin/libmlx.a
 	gcc $(OBJ) -L ./libft -lft -L ./minilibx-lin -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT
 
-$(NAME_BONUS): directories $(OBJ_BONUS) libft/libft.a
+$(NAME_BONUS): $(OBJ_BONUS) libft/libft.a
 	gcc $(OBJ_BONUS) -L ./libft -lft -lmlx -lXext -lX11 -lm -lz -I ./includes -o miniRT_bonus
 
 obj/main.o: srcs/main.c
@@ -103,6 +105,9 @@ obj/mem_utils.o: srcs/mem_utils.c
 obj/cylinder_cap_utils.o: srcs/cylinder_cap_utils.c
 	gcc -c -g $(W) srcs/cylinder_cap_utils.c -I ./includes -I ./minilibx-lin -o obj/cylinder_cap_utils.o
 
+obj/x_window.o: srcs/x_window.c
+	gcc -c -g $(W) srcs/x_window.c -I ./includes -I ./minilibx-lin -o obj/x_window.o
+
 
 obj/main_bonus.o: srcs_bonus/main_bonus.c
 	mkdir -p obj
@@ -176,6 +181,9 @@ obj/rotate_bonus.o: srcs_bonus/rotate_bonus.c
 
 obj/resize_bonus.o: srcs_bonus/resize_bonus.c
 	gcc -c -g $(W) srcs_bonus/resize_bonus.c -I ./includes -I ./minilibx-lin -o obj/resize_bonus.o
+
+obj/x_window_bonus.o: srcs_bonus/x_window_bonus.c
+	gcc -c -g $(W) srcs_bonus/x_window_bonus.c -I ./includes -I ./minilibx-lin -o obj/x_window_bonus.o
 
 libft/libft.a:
 	$(MAKE) -C libft
