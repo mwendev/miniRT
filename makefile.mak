@@ -6,7 +6,7 @@
 #    By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 10:00:09 by mwen              #+#    #+#              #
-#    Updated: 2022/04/13 23:11:23 by mwen             ###   ########.fr        #
+#    Updated: 2022/04/14 11:02:53 by mwen             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,8 @@ norme:
 			norminette $(DIR_HEADERS)
 
 bonus:
-			make -sC $(MINILIBX_DIR)
-			make -sC $(LIBFT_DIR)
-			gcc $(CFLAG) $(MFLAG) $(SRCS) $(LIBFT) $(MINILIBX) -I $(DIR_HEADERS) $^ -o $(NAME)
+			gcc $(CFLAG) $(MFLAG) $(SRCS_B) $(LIBFT) $(MINILIBX) -I $(DIR_HEADERS) $^ -o $(NAME)
+			printf '\033[32m[ ✔ ] %s\n\033[0m' "Bonus done"
 
 clean:
 			rm -rf objects

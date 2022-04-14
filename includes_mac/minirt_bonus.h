@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/12 16:33:13 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/14 11:00:23 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct s_data
 	int			plane_norm_koeff;
 	float		pixel_size;
 	float		t;
+	float		rotation[3];
 }	t_data;
 
 int		parse(int *check, char *file, t_data *data);

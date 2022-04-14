@@ -7,5 +7,8 @@ re:
 fclean:
 	make fclean -f makefile.mak
 
+bonus:
+	make bonus -f makefile.mak
+
 nix:
 	make -f makefile.nix
