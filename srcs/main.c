@@ -100,6 +100,8 @@ int	main(int argc, char **argv)
 	init_window(&data);
 	normalize_input(&data);
 	fill_image(&data);
+	mlx_hook(data.mlx_win, 15, 1L<<16, redraw, &data);
+	mlx_hook(data.mlx_win, 17, 0L, terminate1, &data);
 	mlx_key_hook(data.mlx_win, listen_key, &data);
 	mlx_loop(data.mlx);
 }
