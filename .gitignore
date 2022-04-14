@@ -8,3 +8,4 @@ miniRT_bonus
 obj
 minilibx_mms
 CMakeLists.txt
+makefile.nix1
