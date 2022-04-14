@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   x_window.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aserdyuk <aserdyuk@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 14:51:22 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/14 14:51:36 by aserdyuk         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:02:04 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 int	terminate1(t_data *data)
 {
