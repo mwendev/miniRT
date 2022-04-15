@@ -1,14 +1,18 @@
-mak:
-	make -f makefile.mak
+MAKEFILE		=	makefile.nix
+UNAME			=	$(shell uname)
 
-re:
-	make re -f makefile.mak
+ifeq ($(UNAME), Darwin)
+	MAKEFILE	=	makefile.mak
+endif
 
-fclean:
-	make fclean -f makefile.mak
+all:
+	make -f $(MAKEFILE)
 
 bonus:
-	make bonus -f makefile.mak
+	make bonus -f $(MAKEFILE)
 
-nix:
-	make -f makefile.nix
+clean:
+	make clean -f $(MAKEFILE)
+
+fclean:
+	make fclean -f $(MAKEFILE)

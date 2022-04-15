@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 23:41:02 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/14 11:03:14 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/14 22:55:54 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	terminate(t_data *data, char *msg, int if_exit)
 		{
 			mlx_destroy_image(data->mlx, data->img);
 			mlx_destroy_window(data->mlx, data->mlx_win);
-			mlx_destroy_display(data->mlx);
+			// mlx_destroy_display(data->mlx);
 			free(data->mlx);
 		}
 		if (data->mouse)

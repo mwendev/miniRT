@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/12 16:33:25 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/15 10:27:02 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int		distribute(t_data *data);
 void	rotate(int key, t_data *data);
 void	resize(int key, t_data *data);
 float	*select_orient(int axis, t_data *data);
-int 	terminate1(t_data *data);
+int		terminate1(t_data *data);
 void	free_light(t_data *data);
 void	free_spheres(t_data *data);
 void	free_plane(t_data *data);

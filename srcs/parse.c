@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 20:46:45 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/12 16:48:49 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/15 16:06:41 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	parse_type(int *check, char *tr, t_data *data)
 		return (parse_pl(tr + id_len, data, 0, malloc(sizeof(t_plane))));
 	else if (id_len == 2 && !ft_strncmp(tr, "cy", 2))
 		return (parse_cy(tr + id_len, data, 0, malloc(sizeof(t_cylinder))));
-	else if (!id_len)
+	else if (!id_len || (id_len == 1 && *tr == '\n'))
 		return (0);
 	else
 		return (terminate(data, "Invalid type of element in .rt", 0));

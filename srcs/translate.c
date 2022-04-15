@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 18:53:10 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/11 15:19:24 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/15 12:29:42 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ int	distribute(t_data *data)
 
 	i = data->selected.number;
 	ret = 0;
-	if (data->selected.shape == 'l')
+	if (data->selected.shape == 'l' && data->lights)
 		while (i--)
 			data->lights = data->lights->next;
-	else if (data->selected.shape == 's')
+	else if (data->selected.shape == 's' && data->spheres)
 		while (i--)
 			data->spheres = data->spheres->next;
-	else if (data->selected.shape == 'y')
+	else if (data->selected.shape == 'y' && data->cylinders)
 		while (i--)
 			data->cylinders = data->cylinders->next;
-	else if (data->selected.shape == 'p')
+	else if (data->selected.shape == 'p' && data->planes)
 		while (i--)
 			data->planes = data->planes->next;
 	else if (data->selected.shape == 'c')

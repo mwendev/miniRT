@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 20:15:55 by mwen              #+#    #+#             */
-/*   Updated: 2022/04/12 18:31:41 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/15 16:04:07 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ char	*parse_info(char *line, int *i)
 	if (ret)
 	{
 		len = 0;
-		while (line[j] && line[j] != ' ' && line[j] != '\t')
+		while (line[j] && line[j] != ' ' && line[j] != '\t' && line[j] != '\n')
 		{
 			if (line[j] > '9' || (line[j] < '0' && line[j] != '.'
 					&& line[j] != '-' && line[j] != ','))

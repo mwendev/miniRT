@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:06:36 by aserdyuk          #+#    #+#             */
-/*   Updated: 2022/04/14 15:00:26 by mwen             ###   ########.fr       */
+/*   Updated: 2022/04/15 10:23:02 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,6 @@ void	free_plane(t_data *data);
 void	free_spheres(t_data *data);
 void	free_light(t_data *data);
 int		redraw(t_data *data);
-int 	terminate1(t_data *data);
+int		terminate1(t_data *data);
 
 #endif

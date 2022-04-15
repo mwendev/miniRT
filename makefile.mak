@@ -6,7 +6,7 @@
 #    By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 10:00:09 by mwen              #+#    #+#              #
-#    Updated: 2022/04/14 11:02:53 by mwen             ###   ########.fr        #
+#    Updated: 2022/04/15 17:28:57 by mwen             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ clean:
 			make clean -sC $(MINILIBX_DIR)
 			printf '\033[31m[ ✔ ] %s\n\033[0m' "Cleaned miniRT"
 
-fclean: clean
+fclean: 	clean
 			/bin/rm -f $(NAME)
 			make fclean -sC $(LIBFT_DIR)
 			make clean -sC $(MINILIBX_DIR)
